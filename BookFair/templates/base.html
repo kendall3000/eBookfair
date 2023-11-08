@@ -7,15 +7,14 @@
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
         <title>{% block title %} Django App{% endblock %}</title>
-        <!-- Bootstrap Css -->
-        <link
-            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-            rel="stylesheet"
-        />
+
+        <!-- I had to install bootstrap5 this way. -->
+        {% load bootstrap5 %}
+        {% bootstrap_css %}
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">My Django App</a>
+            <a class="navbar-brand" href="#">eBookStore</a>
             <button
                 class="navbar-toggler"
                 type="button"
@@ -27,18 +26,15 @@
             >
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-                </ul>
+            <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                       Store 
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Category1</a></li>
+                        <li><a class="dropdown-item" href="#">Category2</a></li>
+                        <li><a class="dropdown-item" href="#">Category3</a></li>
+                    </ul>
             </div>
         </nav>
         <div class="container">{% block content %} {% endblock %}</div>
@@ -46,4 +42,6 @@
         <!-- jQuery and Bootstrap Bundle (includes Popper) -->
         <!-- <script src="https://code.jquery.com/jquery-3.3.3.slim.min.js"></script> -->
         <!-- script src="https://stckpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min" -->
+
+        {% bootstrap_javascript %}
     </body>
