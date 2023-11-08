@@ -2,5 +2,7 @@
     .bg-primary {
         background-color: #e6000d!important;
     }
-    
+    .navbar {
+        padding-left: .5rem!important;
+    }
 }

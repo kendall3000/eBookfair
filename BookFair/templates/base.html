@@ -3,7 +3,7 @@
     <head>
                 <!-- Custom styles (see css folder) -->
                 {% load static %}
-                <link rel="stylesheet" type="text/css" href="{% static 'BookFair/base.css' %}">
+                <link rel="stylesheet" type="text/css" href="{% static 'BookFair/css/base.css' %}">
 
         <meta charset="UTF-8" />
         <meta
@@ -18,7 +18,10 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg bg-primary">
-            <a class="navbar-brand" href="#">eBookStore</a>
+            <a class="navbar-brand" href="#">
+                {% load static %}
+                <img src="{% static 'BookFair/svg/logo-outline.svg' %}" height="40px" alt="eBookFair">
+            </a>
             <button
                 class="navbar-toggler"
                 type="button"
@@ -31,7 +34,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn text-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                        Store 
                     </button>
                     <ul class="dropdown-menu">
