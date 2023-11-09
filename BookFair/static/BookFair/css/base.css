@@ -6,12 +6,29 @@
     /* Primary suble */
     --bs-primary-subtle: #630207!important;
 }
+/* Theme color variables */
+.bg-primary-subtle {
+    background-color: var(--bs-primary-subtle)!important;
+}
+.text-primary-subtle {
+    color: var(--bs-primary-subtle)!important;
+}
+/* Navbar items */
 .navbar {
     padding: .5rem!important;
 }
+/* Text */
 .text-primary {
     color: #3f0003!important;
 }
 a {
+    color: #ca000a!important;
+}
+/* Search */
+#search-box input {
+    color: #ffdede!important;
+    border: 0!important;
+}
+#search-box input::placeholder {
     color: #ca000a!important;
 }
