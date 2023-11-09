@@ -4,5 +4,6 @@
 - Install these with pip before running the server (`pip install <package name>`).
     - django
     - django-bootstrap-v5
+    - django-bootstrap-icons
 - Run the server!
     - `python manage.py runserver`

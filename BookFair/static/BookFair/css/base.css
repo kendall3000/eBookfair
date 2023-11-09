@@ -1,14 +1,17 @@
 :root {
-    .bg-primary {
-        background-color: #e6000d!important;
-    }
-    .navbar {
-        padding: .5rem!important;
-    }
-    .text-primary {
-        color: #3f0003!important;
-    }
-    a {
-        color: #ca000a!important;
-    }
+    /* Primary color */
+    --bs-primary: #e6000d!important;
+    --bs-primary-rgb: 230,0,11!important;
+
+    /* Primary suble */
+    --bs-primary-subtle: #630207!important;
+}
+.navbar {
+    padding: .5rem!important;
+}
+.text-primary {
+    color: #3f0003!important;
+}
+a {
+    color: #ca000a!important;
 }
