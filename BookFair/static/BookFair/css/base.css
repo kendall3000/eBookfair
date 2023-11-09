@@ -5,4 +5,10 @@
     .navbar {
         padding-left: .5rem!important;
     }
+    .text-primary {
+        color: #3f0003!important;
+    }
+    a {
+        color: #ca000a!important;
+    }
 }
