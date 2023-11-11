@@ -3,26 +3,66 @@
 {% load static %}
 {% load bootstrap5 %}
 
+<!-- Content is loaded directly to webpage past this point -->
 {% block content %}
+<!-- Product CSS -->
+<link rel="stylesheet" type="text/css" href="{% static 'BookFair/css/product.css' %}">
+
 <!-- Hero image -->
-<img src="{% static 'BookFair/img/home/hero.webp' %}" class="img-fluid">
+<img class="img-fluid" src="{% static 'BookFair/img/home/hero.webp' %}">
 <!--  -->
 <hr>
 <!-- Product stuff -->
-<h1>Featured products</h1>
-<div class="container">
-    <div class="row overflow-x-auto">
-        <div class="col-6 col-sm-4 col-lg-3">
-            <p>wowie!</p>
+<h1 class="mb-3">Featured products</h1>
+<div class="container mb-5">
+    <div class="row g-3">
+        <div class="col-6 col-md-4 col-lg-3">
+            <div class="card">
+                <a href="#">
+                    <img class="card-img-top" src="{% static 'BookFair/img/product/placeholder.webp' %}">
+                    <div class="card-body">
+                        <span class="badge bg-primary-subtle text-uppercase">Category</span>
+                        <p class="fs-3 mb-0">Product1</p>
+                        <p class="fs-5">$X.XX</p>
+                    </div>
+                </a>
+            </div>
         </div>
-        <div class="col-6 col-sm-4 col-lg-3">
-            <p>amazing!</p>
+        <div class="col-6 col-md-4 col-lg-3">
+            <div class="card">
+                <a href="#">
+                    <img class="card-img-top" src="{% static 'BookFair/img/product/placeholder.webp' %}">
+                    <div class="card-body">
+                        <span class="badge bg-primary-subtle text-uppercase">Category</span>
+                        <p class="fs-3 mb-0">Product2</p>
+                        <p class="fs-5">$X.XX</p>
+                    </div>
+                </a>
+            </div>
         </div>
-        <div class="col-6 col-sm-4 col-lg-3">
-            <p>incredible!</p>
+        <div class="col-6 col-md-4 col-lg-3">
+            <div class="card">
+                <a href="#">
+                    <img class="card-img-top" src="{% static 'BookFair/img/product/placeholder.webp' %}">
+                    <div class="card-body">
+                        <span class="badge bg-primary-subtle text-uppercase">Category</span>
+                        <p class="fs-3 mb-0">Product3</p>
+                        <p class="fs-5">$X.XX</p>
+                    </div>
+                </a>
+            </div>
         </div>
-        <div class="col-6 col-sm-4 col-lg-3">
-            <p>wild!</p>
+        <div class="col-6 col-md-4 col-lg-3">
+            <div class="card">
+                <a href="#">
+                    <img class="card-img-top" src="{% static 'BookFair/img/product/placeholder.webp' %}">
+                    <div class="card-body">
+                        <span class="badge bg-primary-subtle text-uppercase">Category</span>
+                        <p class="fs-3 mb-0">Product4</p>
+                        <p class="fs-5">$X.XX</p>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
 </div>

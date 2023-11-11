@@ -1,0 +1,10 @@
+/* Product cards */
+.card-img-top {
+    object-fit: cover;
+    width: 100%;
+    height: 14em;
+}
+.card a {
+    color: var(--bs-primary-subtle)!important;
+    text-decoration: none;
+}
