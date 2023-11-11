@@ -4,6 +4,26 @@
 {% load bootstrap5 %}
 
 {% block content %}
+<!-- Hero image -->
 <img src="{% static 'BookFair/img/home/hero.webp' %}" class="img-fluid">
-<p>This is the home page</p>
+<!--  -->
+<hr>
+<!-- Product stuff -->
+<h1>Featured products</h1>
+<div class="container">
+    <div class="row overflow-x-auto">
+        <div class="col-6 col-sm-4 col-lg-3">
+            <p>wowie!</p>
+        </div>
+        <div class="col-6 col-sm-4 col-lg-3">
+            <p>amazing!</p>
+        </div>
+        <div class="col-6 col-sm-4 col-lg-3">
+            <p>incredible!</p>
+        </div>
+        <div class="col-6 col-sm-4 col-lg-3">
+            <p>wild!</p>
+        </div>
+    </div>
+</div>
 {% endblock %}
