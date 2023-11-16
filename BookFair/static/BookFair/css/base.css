@@ -28,7 +28,12 @@ a {
 #search-box input {
     color: #ffdede!important;
     border: 0!important;
+    border-radius: .25em 0em 0em .25em!important;
+    margin-right: 2px;
 }
 #search-box input::placeholder {
     color: #ca000a!important;
+}
+#search-box button {
+    border-radius: 0em .25em .25em 0em!important;
 }
