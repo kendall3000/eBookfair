@@ -8,19 +8,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema cs3773
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema cs3773
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `cs3773` DEFAULT CHARACTER SET utf8 ;
+USE `cs3773` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`CUSTOMER`
+-- Table `cs3773`.`CUSTOMER`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`CUSTOMER` (
+CREATE TABLE IF NOT EXISTS `cs3773`.`CUSTOMER` (
   `cus_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `cus_lname` VARCHAR(45) NOT NULL,
   `cus_fname` VARCHAR(45) NOT NULL,
@@ -34,9 +34,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`INVOICE`
+-- Table `cs3773`.`INVOICE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`INVOICE` (
+CREATE TABLE IF NOT EXISTS `cs3773`.`INVOICE` (
   `inv_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `cus_id` INT UNSIGNED NOT NULL,
   `inv_date` DATETIME NOT NULL,
@@ -51,16 +51,16 @@ CREATE TABLE IF NOT EXISTS `mydb`.`INVOICE` (
   INDEX `fk_INVOICE_CUSTOMER_idx` (`cus_id` ASC) VISIBLE,
   CONSTRAINT `fk_INVOICE_CUSTOMER`
     FOREIGN KEY (`cus_id`)
-    REFERENCES `mydb`.`CUSTOMER` (`cus_id`)
+    REFERENCES `cs3773`.`CUSTOMER` (`cus_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`CATEGORY`
+-- Table `cs3773`.`CATEGORY`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`CATEGORY` (
+CREATE TABLE IF NOT EXISTS `cs3773`.`CATEGORY` (
   `cat_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `cat_name` VARCHAR(64) NOT NULL,
   PRIMARY KEY (`cat_id`),
@@ -70,9 +70,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`PRODUCT`
+-- Table `cs3773`.`PRODUCT`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`PRODUCT` (
+CREATE TABLE IF NOT EXISTS `cs3773`.`PRODUCT` (
   `prod_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `prod_name` VARCHAR(128) NOT NULL,
   `prod_descript` VARCHAR(2048) NOT NULL,
@@ -84,16 +84,16 @@ CREATE TABLE IF NOT EXISTS `mydb`.`PRODUCT` (
   INDEX `fk_PRODUCT_CATEGORY1_idx` (`cat_id` ASC) VISIBLE,
   CONSTRAINT `fk_PRODUCT_CATEGORY1`
     FOREIGN KEY (`cat_id`)
-    REFERENCES `mydb`.`CATEGORY` (`cat_id`)
+    REFERENCES `cs3773`.`CATEGORY` (`cat_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`DISCOUNT`
+-- Table `cs3773`.`DISCOUNT`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`DISCOUNT` (
+CREATE TABLE IF NOT EXISTS `cs3773`.`DISCOUNT` (
   `disc_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `disc_code` VARCHAR(16) NOT NULL,
   `disc_start` DATETIME NOT NULL,
@@ -104,9 +104,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`LINE`
+-- Table `cs3773`.`LINE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`LINE` (
+CREATE TABLE IF NOT EXISTS `cs3773`.`LINE` (
   `line_id` INT UNSIGNED NOT NULL,
   `line_total` DECIMAL(8,2) UNSIGNED NOT NULL COMMENT 'The monetary amount that the items in this line were sold for, after a discount was applied.',
   `line_quantity` INT UNSIGNED NOT NULL,
@@ -120,26 +120,26 @@ CREATE TABLE IF NOT EXISTS `mydb`.`LINE` (
   INDEX `fk_LINE_DISCOUNT1_idx` (`disc_id` ASC) VISIBLE,
   CONSTRAINT `fk_LINE_INVOICE1`
     FOREIGN KEY (`inv_id`)
-    REFERENCES `mydb`.`INVOICE` (`inv_id`)
+    REFERENCES `cs3773`.`INVOICE` (`inv_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_LINE_PRODUCT1`
     FOREIGN KEY (`prod_id`)
-    REFERENCES `mydb`.`PRODUCT` (`prod_id`)
+    REFERENCES `cs3773`.`PRODUCT` (`prod_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_LINE_DISCOUNT1`
     FOREIGN KEY (`disc_id`)
-    REFERENCES `mydb`.`DISCOUNT` (`disc_id`)
+    REFERENCES `cs3773`.`DISCOUNT` (`disc_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`IMAGES`
+-- Table `cs3773`.`IMAGES`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`IMAGES` (
+CREATE TABLE IF NOT EXISTS `cs3773`.`IMAGES` (
   `img_id` INT UNSIGNED NOT NULL,
   `prod_id` INT UNSIGNED NOT NULL,
   `img_filename` VARCHAR(128) NOT NULL,
@@ -147,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`IMAGES` (
   PRIMARY KEY (`img_id`),
   CONSTRAINT `fk_PRODUCTIMAGES_PRODUCT1`
     FOREIGN KEY (`prod_id`)
-    REFERENCES `mydb`.`PRODUCT` (`prod_id`)
+    REFERENCES `cs3773`.`PRODUCT` (`prod_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
