@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'eBook.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mydb',
+        'NAME': 'cs3773',
         'USER': 'root',
     }
 }
