@@ -66,6 +66,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                # Processor to display categories across multiple webpages
+                # See: https://stackoverflow.com/questions/22872106/fetch-data-from-db-in-base-template-django-python
+                "BookFair.context_processors.category_list"
             ],
         },
     },

@@ -31,7 +31,11 @@
                 </button>
                 <div id="navbar-content" class="collapse navbar-collapse">
                     <!-- Categories -->
-
+                    {% if categories_dict %}
+                        {% for category in categories_dict %}
+                            <a href="#">{{ category.cat_name }}</a>
+                        {% endfor %}
+                    {% endif %}
                     <!-- Search -->
                     <form class="d-flex ms-auto me-1" role="search" id="search-box">
                         <input class="form-control bg-primary-subtle text-emphasis" type="search" placeholder="Search" aria-label="Search">
