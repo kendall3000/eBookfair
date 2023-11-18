@@ -17,6 +17,9 @@
 .navbar {
     padding: .5rem!important;
 }
+.nav-link:hover {
+    color: #ffdede!important;
+}
 /* Text */
 .text-primary {
     color: #3f0003!important;
