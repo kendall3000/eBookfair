@@ -20,6 +20,12 @@
 .nav-link:hover, .nav-link:focus {
     color: var(--bs-primary-subtle)!important;
 }
+#navbar-row-spacer {
+    height: 0.5em;
+}
+#navbar-col-spacer {
+    width: 0.5em;
+}
 /* Text */
 .text-primary {
     color: #3f0003!important;

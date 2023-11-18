@@ -48,6 +48,10 @@
                         <input class="form-control bg-primary-subtle text-emphasis" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn bg-primary-subtle" type="submit">{% bs_icon 'search' color='white' size='1.25em' %}</button>
                     </form>
+                    <!-- Spacers between navbar; collapsible container messes w/ ability to use gaps -->
+                    <div id="navbar-row-spacer" class="d-block d-lg-none"></div>
+                    <div id="navbar-col-spacer" class="d-none d-lg-block"></div>
+                    <!-- Profile -->
                     <a href="{% url 'signup_profile' %}">
                         <button class="btn bg-primary-subtle w-100">
                             <span class="d-inline d-lg-none text-light">My account</span>
