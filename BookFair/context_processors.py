@@ -4,6 +4,6 @@
 from models.models import Category
 
 def category_list(request):
-    categories = Category.objects.all()
+    categories = Category.objects.all().order_by('cat_id')
 
     return {'categories_dict': categories}
