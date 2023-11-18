@@ -49,11 +49,10 @@
                         <button class="btn bg-primary-subtle" type="submit">{% bs_icon 'search' color='white' size='1.25em' %}</button>
                     </form>
                     <a href="{% url 'signup_profile' %}">
-                        <button class="btn bg-primary-subtle">
-                            <!--?xml version="1.0" ?-->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="1.25em" height="1.25em" fill="white" class="bi bi-person-fill" viewBox="0 0 16 16">
-                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path>
-                            </svg>
+                        <button class="btn bg-primary-subtle w-100">
+                            <span class="d-inline d-lg-none text-light">My account</span>
+
+                            {% bs_icon 'person-fill' color='white' size='1.25em' %}
                         </button>
                     </a>
                 </div>     
