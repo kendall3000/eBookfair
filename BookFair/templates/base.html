@@ -33,12 +33,12 @@
                     <!-- Categories -->
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                          <a class="nav-link text-light" aria-current="page" href="#">Home</a>
+                          <a class="nav-link text-light" aria-current="page" href="{% url 'home' %}">Home</a>
                         </li>
                         {% if categories_dict %}
                             {% for category in categories_dict %}
                                 <li class="nav-item">
-                                    <a class="nav-link text-light" aria-current="page" href="#">{{ category.cat_name }}</a>
+                                    <a class="nav-link text-light" aria-current="page" href="{% url 'category' category.cat_id %}">{{ category.cat_name }}</a>
                                 </li>
                             {% endfor %}
                         {% endif %}
