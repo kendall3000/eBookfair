@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, get_object_or_404
 
-from models.models import Category
+from models.models import Category, Product
 
 # Create your views here.
 def home(request):
