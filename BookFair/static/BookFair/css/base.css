@@ -17,8 +17,8 @@
 .navbar {
     padding: .5rem!important;
 }
-.nav-link:hover {
-    color: #ffdede!important;
+.nav-link:hover, .nav-link:focus {
+    color: var(--bs-primary-subtle)!important;
 }
 /* Text */
 .text-primary {
