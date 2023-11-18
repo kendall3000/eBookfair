@@ -2,8 +2,11 @@
 <!-- Load django apps -->
 {% load static %}
 {% load bootstrap5 %}
+<!-- Start block -->
 {% block content %}
-<!-- Product stuff -->
+<!-- Product CSS -->
+<link rel="stylesheet" type="text/css" href="{% static 'BookFair/css/product.css' %}">
+<!-- Product listing -->
 <h1 class="my-3">
     {{ category.cat_name }} items
 </h1>
