@@ -2,7 +2,6 @@
 <!-- Load django apps -->
 {% load static %}
 {% load bootstrap5 %}
-{% load bootstrap_icons %}
 <!-- Start block -->
 {% block content %}
 <!-- Product CSS -->
@@ -21,7 +20,7 @@
                     <span class="badge bg-primary-subtle text-uppercase mb-2">{{ product.cat.cat_name }}</span>
                     <p class="card-text">{{ product.prod_descript }}</p>
                     <p><strong>Price: </strong>${{ product.prod_price }}</p>
-                    <button class="btn bg-primary text-light btn-block">{% bs_icon 'cart-plus-fill' color='white' %} Add to Cart</button>
+                    <button class="btn bg-primary text-light btn-block">{% bs_icon 'cart-plus-fill' color='white' size='1.25em' %} Add to Cart</button>
                 </div>
                 {% endif %}
             </div>
