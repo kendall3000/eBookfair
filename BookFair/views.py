@@ -37,5 +37,10 @@ def category(request, cat_id):
 
     return render(request, "BookFair/category.html", {"category": req_category, "cat_products": cat_products_sorted})
 
+def product(request, prod_id):
+    req_product = get_object_or_404(Product, pk=prod_id)
+
+    return render(request, "BookFair/product.html", {"product": req_product})
+
 def signup_profile(request):
     return render(request, 'BookFair/signup_profile.html')
