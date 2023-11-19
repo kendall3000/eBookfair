@@ -18,9 +18,15 @@ def home(request):
 def category(request, cat_id):
     req_category = get_object_or_404(Category, pk=cat_id)
 
-    cat_products = req_category.product_set.all()
+    cat_products = req_category.product_set
 
-    return render(request, "BookFair/category.html", {"category": req_category, "cat_products": cat_products})
+    match request.GET.get('sort'):
+        case "name":
+            cat_products_sorted = cat_products.order_by('prod_name')
+        case _:
+            cat_products_sorted = cat_products.order_by('prod_id').all()
+
+    return render(request, "BookFair/category.html", {"category": req_category, "cat_products": cat_products_sorted})
 
 def signup_profile(request):
     return render(request, 'BookFair/signup_profile.html')
