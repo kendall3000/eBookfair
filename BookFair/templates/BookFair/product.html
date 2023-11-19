@@ -23,10 +23,20 @@
                     <span class="badge bg-primary-subtle text-uppercase mb-2">{{ product.cat.cat_name }}</span>
                     <p class="card-text">{{ product.prod_descript }}</p>
                     <p><strong>Price: </strong>${{ product.prod_price }}</p>
-                    <button class="btn bg-primary text-light btn-block">
-                        {% bs_icon 'cart-plus-fill' color='white' size='1.25em' %}
-                        Add to Cart
-                    </button>
+                    <!-- Check in stock -->
+                    {% if product.prod_stock > 0 %}
+                        <button class="btn bg-primary text-light btn-block">
+                            {% bs_icon 'cart-plus-fill' color='white' size='1.25em' %}
+                            Add to Cart
+                        </button>
+                        <p class="card-text mt-3">Only <span class="fw-bold">{{ product.prod_stock }}</span> in stock!</p>
+                    {% else %}
+                        <button class="btn btn-secondary text-light btn-block" disabled>
+                            {% bs_icon 'cart-x-fill' color='white' size='1.25em' %}
+                            Out of stock
+                        </button>
+                        <p class="card-text mt-3">No stock available :&#40; Check back soon!</p>
+                    {% endif %}
                 </div>
                 {% endif %}
             </div>
