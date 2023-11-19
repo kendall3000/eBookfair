@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page with Bootstrap</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .product-image {
+            width: 100%;
+            height: auto;
+            max-height: 600px; /* Increased max-height */
+            display: block;
+            margin: 0 auto;
+        }
+
+        .card {
+            max-width: 1000px; /* Increased max-width */
+            max-height: 800px; /* Increased max-height */
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        main {
+            flex: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="container mt-4">
+        <div class="card">
+            <div class="row no-gutters">
+                <div class="col-md-6">
+                    <img src="{% static 'BookFair/img/product/placeholder.webp' %}" class="card-img product-image" alt="Product Image">
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <h2 class="card-title">Name</h2>
+                        <p class="card-text">Description</p>
+                        <p><strong>Price:</strong> $idk</p>
+                        <button class="btn btn-success btn-block">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Include Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
