@@ -8,7 +8,7 @@
 <!-- Product CSS -->
 <link rel="stylesheet" type="text/css" href="{% static 'BookFair/css/product.css' %}">
 <!-- Product page container -->
-<div class="container mt-4">
+<div class="container my-5">
     <div class="card">
         <div class="row no-gutters">
             <div class="col-md-6">
@@ -16,7 +16,7 @@
             </div>
             <div class="col-md-6">
                 {% if product %}
-                <div class="card-body">
+                <div class="card-body mb-5">
                     <h2 class="card-title mt-4 mb-3">{{ product.prod_name }}</h2>
                     <span class="badge bg-primary-subtle text-uppercase mb-2">{{ product.cat.cat_name }}</span>
                     <p class="card-text">{{ product.prod_descript }}</p>
