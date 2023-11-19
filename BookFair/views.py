@@ -1,10 +1,19 @@
+# Django packages
 from django.shortcuts import render, HttpResponse, get_object_or_404
-
-from models.models import Category
+# Model packages
+from models.models import Category, Product
+# Python packages
+import random
 
 # Create your views here.
 def home(request):
-    return render(request, "BookFair/home.html")
+    # Get 4 random object IDs
+    num_products = Product.objects.count()
+    rand_product_ids = random.sample(range(1,num_products), 4)
+    # Get corresponding product objects
+    rand_product_objs = [Product.objects.get(pk=prod_id) for prod_id in rand_product_ids]
+
+    return render(request, "BookFair/home.html", {"featured_products": rand_product_objs})
 
 def category(request, cat_id):
     req_category = get_object_or_404(Category, pk=cat_id)
