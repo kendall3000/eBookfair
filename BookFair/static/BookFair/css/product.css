@@ -8,3 +8,10 @@
     color: var(--bs-primary-subtle)!important;
     text-decoration: none;
 }
+/* Product full page card CSS */
+.product-card-full {
+    max-width: 60em;
+}
+.product-image {
+    object-fit: cover;
+}
