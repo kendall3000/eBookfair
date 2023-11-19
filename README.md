@@ -5,5 +5,6 @@
     - django
     - django-bootstrap-v5
     - django-bootstrap-icons
+    - Pillow
 - Run the server!
     - `python manage.py runserver`
