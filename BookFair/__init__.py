@@ -1,1 +1,1 @@
-import models.models
+from models.models import Product
