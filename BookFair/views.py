@@ -29,9 +29,9 @@ def category(request, cat_id):
         case "price-hl":
             cat_products_sorted = cat_products.order_by('-prod_price')
         case "stock-lh":
-            cat_products_sorted = cat_products.order_by('prod-stock')
+            cat_products_sorted = cat_products.order_by('prod_stock')
         case "stock-hl":
-            cat_products_sorted = cat_products.order_by('-prod-stock')
+            cat_products_sorted = cat_products.order_by('-prod_stock')
         case _:
             cat_products_sorted = cat_products.order_by('prod_id').all()
 

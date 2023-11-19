@@ -50,7 +50,7 @@ a {
 .dropdown-item {
     color: var(--bs-primary-subtle)!important;
 }
-.dropdown-item:active {
+.dropdown-item:active, .dropdown-item:focus {
     color: white!important;
     background-color: var(--bs-primary-subtle)!important;
 }
