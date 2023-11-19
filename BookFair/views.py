@@ -28,6 +28,10 @@ def category(request, cat_id):
             cat_products_sorted = cat_products.order_by('prod_price')
         case "price-hl":
             cat_products_sorted = cat_products.order_by('-prod_price')
+        case "stock-lh":
+            cat_products_sorted = cat_products.order_by('prod-stock')
+        case "stock-hl":
+            cat_products_sorted = cat_products.order_by('-prod-stock')
         case _:
             cat_products_sorted = cat_products.order_by('prod_id').all()
 

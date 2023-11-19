@@ -47,6 +47,9 @@ a {
     border-radius: 0em .25em .25em 0em!important;
 }
 /* Dropdown */
+.dropdown-item {
+    color: var(--bs-primary-subtle)!important;
+}
 .dropdown-item:active {
     color: white!important;
     background-color: var(--bs-primary-subtle)!important;
