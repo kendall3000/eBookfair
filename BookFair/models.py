@@ -93,7 +93,7 @@ class Product(models.Model):
     cat = models.ForeignKey(Category, models.PROTECT)   # A product *must* belong to a category, so raise a ProtectedError if their corresponding category is removed.
                                                         # Remove the products or change their corresponding category before deleting a CATEGORY object.
     # One image per product; images will be saved to media/product
-    prod_img = models.ImageField(upload_to='product')
+    prod_img = models.ImageField(upload_to='product', null=True)
 
     class Meta:
 #        managed = False
