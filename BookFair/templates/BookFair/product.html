@@ -14,12 +14,15 @@
                 <img src="{% static 'BookFair/img/product/placeholder.webp' %}" class="card-img product-image" alt="Product Image">
             </div>
             <div class="col-md-6">
+                {% if product %}
                 <div class="card-body">
-                    <h2 class="card-title">Name</h2>
-                    <p class="card-text">Description</p>
-                    <p><strong>Price:</strong> $idk</p>
+                    <span class="badge bg-primary-subtle text-uppercase">{{ product.cat.cat_name }}</span>
+                    <h2 class="card-title">{{ product.prod_name }}</h2>
+                    <p class="card-text">{{ product.prod_descript }}</p>
+                    <p><strong>Price: </strong>${{ product.prod_price }}</p>
                     <button class="btn bg-primary text-light btn-block">Add to Cart</button>
                 </div>
+                {% endif %}
             </div>
         </div>
     </div>
