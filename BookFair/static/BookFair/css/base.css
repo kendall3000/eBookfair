@@ -7,6 +7,9 @@
     --bs-primary-subtle: #630207!important;
 }
 /* Theme color variables */
+.bg-primary {
+    background-color: var(--bs-primary-subtle)!important;
+}
 .bg-primary-subtle {
     background-color: var(--bs-primary-subtle)!important;
 }
