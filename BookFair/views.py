@@ -15,16 +15,16 @@ def home(request):
 
     return render(request, "BookFair/home.html", {"featured_products": rand_product_objs})
 
-def category(request, cat_id):
+def category(request, cat_id, sort="none"):
     req_category = get_object_or_404(Category, pk=cat_id)
 
     cat_products = req_category.product_set
 
     # Sorting options
-    match request.GET.get('sort'):
+    match sort:
         case "name":
-            cat_products_sorted = cat_products.order_by('prod_name')
-        case _:
+            cat_products_sorted = cat_products.order_by('prod_name').all()
+        case "none" | _:
             cat_products_sorted = cat_products.order_by('prod_id').all()
 
     return render(request, "BookFair/category.html", {"category": req_category, "cat_products": cat_products_sorted})
