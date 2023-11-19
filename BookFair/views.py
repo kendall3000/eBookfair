@@ -24,6 +24,10 @@ def category(request, cat_id):
     match request.GET.get('sort'):
         case "name":
             cat_products_sorted = cat_products.order_by('prod_name')
+        case "price-lh":
+            cat_products_sorted = cat_products.order_by('prod_price')
+        case "price-hl":
+            cat_products_sorted = cat_products.order_by('-prod_price')
         case _:
             cat_products_sorted = cat_products.order_by('prod_id').all()
 
