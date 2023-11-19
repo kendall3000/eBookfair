@@ -20,6 +20,7 @@ def category(request, cat_id):
 
     cat_products = req_category.product_set
 
+    # Sorting options
     match request.GET.get('sort'):
         case "name":
             cat_products_sorted = cat_products.order_by('prod_name')
