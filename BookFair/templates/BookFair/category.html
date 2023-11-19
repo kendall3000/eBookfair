@@ -16,7 +16,7 @@
           Sort by
         </button>
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item text-primary" href="{% url 'category' category.cat_id 'name' %}">Name</a></li>
+          <li><a class="dropdown-item text-primary" href="{% url 'category' cat_id=category.cat_id sort='name' %}">Name</a></li>
           <li><a class="dropdown-item text-primary" href="#">Price, low to high</a></li>
           <li><a class="dropdown-item text-primary" href="#">Price, high to low</a></li>
           <li><a class="dropdown-item text-primary" href="#">In stock, low to low</a></li>
