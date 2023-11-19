@@ -38,7 +38,7 @@
                         {% if categories_dict %}
                             {% for category in categories_dict %}
                                 <li class="nav-item">
-                                    <a class="nav-link text-light" aria-current="page" href="{% url 'category' category.cat_id %}">{{ category.cat_name }}</a>
+                                    <a class="nav-link text-light" aria-current="page" href="{% url 'category' cat_id=category.cat_id %}">{{ category.cat_name }}</a>
                                 </li>
                             {% endfor %}
                         {% endif %}
