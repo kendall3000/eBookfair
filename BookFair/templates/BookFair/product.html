@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+<!-- Title -->
+{% block title %} eBookFair | {{ product.prod_name }} {% endblock %}
+<!-- Load django apps -->
+{% load static %}
+{% load bootstrap5 %}
+{% load bootstrap_icons %}
+<!-- Start block -->
+{% block content %}
+<!-- Product CSS -->
+<link rel="stylesheet" type="text/css" href="{% static 'BookFair/css/product.css' %}">
+<!-- Product page container -->
+<div class="container my-5">
+    <div class="card product-card-full mx-auto">
+        <div class="row no-gutters">
+            <div class="col-md-6">
+                <img src="{% static 'BookFair/img/product/placeholder.webp' %}" class="card-img product-image" alt="Product Image">
+            </div>
+            <div class="col-md-6">
+                {% if product %}
+                <div class="card-body mb-5">
+                    <h2 class="card-title mt-4 mb-3">{{ product.prod_name }}</h2>
+                    <span class="badge bg-primary-subtle text-uppercase mb-2">{{ product.cat.cat_name }}</span>
+                    <p class="card-text">{{ product.prod_descript }}</p>
+                    <p><strong>Price: </strong>${{ product.prod_price }}</p>
+                    <button class="btn bg-primary text-light btn-block">
+                        {% bs_icon 'cart-plus-fill' color='white' size='1.25em' %}
+                        Add to Cart
+                    </button>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

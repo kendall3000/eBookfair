@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+<!-- Title -->
+{% block title %} eBookFair | {{ category.cat_name }} items {% endblock %}
 <!-- Load django apps -->
 {% load static %}
 {% load bootstrap5 %}
@@ -31,7 +33,7 @@
             {% for product in cat_products %}
                 <div class="col-6 col-md-4 col-lg-3">
                     <div class="card">
-                        <a href="#">
+                        <a href="{% url 'product' product.prod_id %}">
                             <img class="card-img-top" src="{% static 'BookFair/img/product/placeholder.webp' %}">
                             <div class="card-body">
                                 <p class="fs-3 mb-0 lh-sm">{{ product.prod_name }}</p>
