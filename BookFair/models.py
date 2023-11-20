@@ -42,18 +42,6 @@ class Discount(models.Model):
 #        managed = False
         db_table = 'DISCOUNT'
 
-
-class Images(models.Model):
-    img_id = models.PositiveIntegerField(primary_key=True)
-    prod = models.ForeignKey('Product', on_delete=models.CASCADE) # If a product is removed, remove all associated images as well.
-    img_filename = models.CharField(max_length=128)
-    img_desc = models.CharField(max_length=256, blank=True, null=True)
-
-    class Meta:
-#        managed = False
-        db_table = 'IMAGES'
-
-
 class Invoice(models.Model):
     inv_id = models.PositiveIntegerField(primary_key=True)
     cus = models.ForeignKey(Customer, on_delete=models.DO_NOTHING)  # If a customer is deleted, don't remove their associated transactions, because it could mess with bookkeeping.
