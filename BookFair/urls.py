@@ -11,4 +11,5 @@ urlpatterns = [
     path("product/<int:prod_id>/", views.product, name="product"),
     # Profile signup page
     path('signup-profile/', signup_profile, name='signup_profile')
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # Warning: this will not work outside of debug mode!
+# See: https://docs.djangoproject.com/en/4.2/howto/static-files/ and https://docs.djangoproject.com/en/4.2/howto/static-files/deployment/
