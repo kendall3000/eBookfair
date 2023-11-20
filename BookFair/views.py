@@ -1,7 +1,7 @@
 # Django packages
 from django.shortcuts import render, HttpResponse, get_object_or_404
 # Model packages
-from models.models import Category, Product
+from BookFair.models import Category, Product
 # Python packages
 import random
 

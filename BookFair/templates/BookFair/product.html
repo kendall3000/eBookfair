@@ -11,13 +11,17 @@
 <link rel="stylesheet" type="text/css" href="{% static 'BookFair/css/product.css' %}">
 <!-- Product page container -->
 <div class="container my-5">
+    {% if product %}
     <div class="card product-card-full mx-auto">
         <div class="row no-gutters">
             <div class="col-md-6">
-                <img src="{% static 'BookFair/img/product/placeholder.webp' %}" class="card-img product-image" alt="Product Image">
+                {% if product.prod_img %}
+                    <img src="{{ product.prod_img.url }}" class="card-img product-image" alt="Product Image">
+                {% else %}
+                    <img src="{% static 'BookFair/img/product/placeholder.webp' %}" class="card-img product-image" alt="Placeholder product image">
+                {% endif %}
             </div>
             <div class="col-md-6">
-                {% if product %}
                 <div class="card-body mb-5">
                     <h2 class="card-title mt-4 mb-3">{{ product.prod_name }}</h2>
                     <span class="badge bg-primary-subtle text-uppercase mb-2">{{ product.cat.cat_name }}</span>
@@ -38,9 +42,9 @@
                         <p class="card-text mt-3">No stock available :&#40; Check back soon!</p>
                     {% endif %}
                 </div>
-                {% endif %}
             </div>
         </div>
     </div>
+    {% endif %}
 </div>
 {% endblock %}
