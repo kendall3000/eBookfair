@@ -2,7 +2,7 @@
 .card-img-top {
     object-fit: cover;
     width: 100%;
-    height: 14em;
+    height: 20em;
 }
 .card a {
     color: var(--bs-primary-subtle)!important;
