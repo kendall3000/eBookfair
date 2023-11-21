@@ -27,14 +27,12 @@
         </div>
     </div>
 
-    <!-- Display user profile information if the user is logged in -->
     {% if user.is_authenticated %}
     <div class="row">
         <div class="col-md-6 offset-md-3 profile-info">
             <h2 class="text-center">Profile Information</h2>
             <p>Username: {{ user.username }}</p>
             <p>Email: {{ user.email }}</p>
-            <!-- Add more profile fields as needed -->
         </div>
     </div>
     {% endif %}

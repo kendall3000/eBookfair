@@ -4,10 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
-
-from .forms import CustomUserCreationForm
 # Model packages
-from BookFair.models import Category, Product,  Cart, UserProfile
+from BookFair.models import Category, Product,  Cart, UserProfile, CustomUserCreationForm 
 # Python packages
 import random
 
@@ -77,7 +75,7 @@ def user_profile(request):
 def signup_profile(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
-         if form.is_valid():
+        if form.is_valid():
             user = form.save()
             # Create a user profile
             UserProfile.objects.create(user=user)

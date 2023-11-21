@@ -7,6 +7,7 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 
 
 class Category(models.Model):
@@ -93,3 +94,22 @@ class Product(models.Model):
     class Meta:
 #        managed = False
         db_table = 'PRODUCT'
+
+class Cart(models.Model):
+    user_profile = models.OneToOneField('UserProfile', on_delete=models.CASCADE)
+    products = models.ManyToManyField(Product)
+
+    def __str__(self):
+        return f"Cart for {self.user_profile.user.username}"
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.user.username
+
+class CustomUserCreationForm(UserCreationForm):
+
+    class Meta:
+        model = User
+        fields = UserCreationForm.Meta.fields
