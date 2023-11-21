@@ -16,6 +16,9 @@ class Category(models.Model):
 #        managed = False
         db_table = 'CATEGORY'
 
+    def __str__(self):
+        return (self.cat_name + " (" + self.cat_id + ")")
+
 
 class Customer(models.Model):
     cus_id = models.PositiveIntegerField(primary_key=True)
