@@ -1,7 +1,13 @@
 # Django packages
 from django.shortcuts import render, HttpResponse, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login, authenticate
+from django.contrib import messages
+
+from .forms import CustomUserCreationForm
 # Model packages
-from BookFair.models import Category, Product
+from BookFair.models import Category, Product,  Cart, UserProfile
 # Python packages
 import random
 
@@ -42,5 +48,44 @@ def product(request, prod_id):
 
     return render(request, "BookFair/product.html", {"product": req_product})
 
+def add_to_cart(request, prod_id):
+    product = get_object_or_404(Product, pk=prod_id)
+    user_profile = UserProfile.objects.get(user=request.user)
+
+    # Check if the user has an existing cart
+    if not hasattr(user_profile, 'cart'):
+        cart = Cart.objects.create(user_profile=user_profile)
+        user_profile.cart = cart
+        user_profile.save()
+
+    # Add the product to the cart
+    user_profile.cart.products.add(product)
+    messages.success(request, 'Product added to cart!')
+    return redirect('user_profile')
+
+
+def view_cart(request):
+    user_profile = UserProfile.objects.get(user=request.user)
+    cart = user_profile.cart
+    cart_products = cart.products.all()
+    return render(request, 'BookFair/view_cart.html', {'cart_products': cart_products})
+
+def user_profile(request):
+    user = request.user
+    return render(request, 'BookFair/user_profile.html', {'user': user})
+
 def signup_profile(request):
-    return render(request, 'BookFair/signup_profile.html')
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+         if form.is_valid():
+            user = form.save()
+            # Create a user profile
+            UserProfile.objects.create(user=user)
+            login(request, user)
+            messages.success(request, 'Account created successfully!')
+            return redirect('user_profile')
+        else:
+            messages.error(request, 'Error creating your account. Please check the provided information.')
+    else:
+        form = CustomUserCreationForm()
+    return render(request, 'BookFair/signup_profile.html', {'form': form})

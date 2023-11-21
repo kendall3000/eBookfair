@@ -1,47 +1,42 @@
 {% extends "base.html" %}
+
 {% block title %} Signup and Profile {% endblock %}
+
 {% load bootstrap5 %}
 
 <style>
-  .signup-profile-section {
-    margin-top: 50px;
-  }
+    .signup-profile-section {
+        margin-top: 50px;
+    }
 
-  .profile-info {
-    margin-top: 20px;
-  }
+    .profile-info {
+        margin-top: 20px;
+    }
 </style>
 
 {% block content %}
 <div class="container signup-profile-section">
-  <div class="row">
-    <div class="col-md-6 offset-md-3 signup-form">
-      <h2 class="text-center">Sign Up</h2>
-      <form>
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" class="form-control" id="username" placeholder="Enter your username">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 signup-form">
+            <h2 class="text-center">Sign Up</h2>
+            <form method="post" action="{% url 'signup_profile' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+            </form>
         </div>
-        <div class="form-group">
-          <label for="email">Email address</label>
-          <input type="email" class="form-control" id="email" placeholder="Enter your email">
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" class="form-control" id="password" placeholder="Enter your password">
-        </div>
-        <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
-      </form>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col-md-6 offset-md-3 profile-info">
-      <h2 class="text-center">Profile Information</h2>
-      <p>Username: <span id="profile-username">JohnDoe</span></p>
-      <p>Email: <span id="profile-email">johndoe@example.com</span></p>
-      <!-- Add more profile fields as needed -->
+    <!-- Display user profile information if the user is logged in -->
+    {% if user.is_authenticated %}
+    <div class="row">
+        <div class="col-md-6 offset-md-3 profile-info">
+            <h2 class="text-center">Profile Information</h2>
+            <p>Username: {{ user.username }}</p>
+            <p>Email: {{ user.email }}</p>
+            <!-- Add more profile fields as needed -->
+        </div>
     </div>
-  </div>
+    {% endif %}
 </div>
 {% endblock %}

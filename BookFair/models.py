@@ -6,6 +6,7 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Category(models.Model):
@@ -17,7 +18,7 @@ class Category(models.Model):
         db_table = 'CATEGORY'
 
     def __str__(self):
-        return (self.cat_name + " (" + str(self.cat_id) + ")")
+        return (self.cat_name + " (" + self.cat_id + ")")
 
 
 class Customer(models.Model):
@@ -28,6 +29,9 @@ class Customer(models.Model):
     cus_email = models.CharField(max_length=128)
     cus_phone = models.CharField(max_length=12)
     cus_phone_country = models.CharField(max_length=3)
+    cus_password = models.CharField(max_length=128)
+    username = models.CharField(max_length=45, unique=True)
+    
 
     class Meta:
 #        managed = False
