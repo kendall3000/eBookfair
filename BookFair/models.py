@@ -17,7 +17,7 @@ class Category(models.Model):
         db_table = 'CATEGORY'
 
     def __str__(self):
-        return (self.cat_name + " (" + self.cat_id + ")")
+        return (self.cat_name + " (" + str(self.cat_id) + ")")
 
 
 class Customer(models.Model):
