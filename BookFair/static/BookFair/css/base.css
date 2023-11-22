@@ -49,10 +49,10 @@ a {
 #searchpage-search-box input {
     background-color: #d3d3d3;
 }
-#nav-search-box input {
+#searchpage-search-box input {
     color: black;
 }
-#nav-search-box input::placeholder {
+#searchpage-search-box input::placeholder {
     color: var(--bs-primary-subtle)!important;
 }
 /* Navbar search */
