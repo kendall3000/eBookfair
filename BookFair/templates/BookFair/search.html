@@ -14,10 +14,6 @@
     <h1 class="mt-3 mb-0">
         Search
     </h1>
-    <form class="search-box d-flex" role="search" id="searchpage-search-box">
-        <input class="form-control bg-primary text-emphasis" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn bg-primary-subtle" type="submit">{% bs_icon 'search' color='white' size='1.25em' %}</button>
-    </form>
     <div class="dropdown">
         <button class="btn bg-primary-subtle text-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           Sort by
@@ -30,6 +26,10 @@
           <li><a class="dropdown-item" href="?sort=stock-hl">In stock, high to low</a></li>
         </ul>
       </div>
+      <form class="search-box d-flex m-3" role="search" id="searchpage-search-box">
+        <input class="form-control bg-primary text-emphasis" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn bg-primary-subtle" type="submit">{% bs_icon 'search' color='white' size='1.25em' %}</button>
+    </form>
 </div>
 <hr>
 <div class="container mb-5">
