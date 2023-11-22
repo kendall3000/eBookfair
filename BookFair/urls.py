@@ -14,5 +14,7 @@ urlpatterns = [
     # Profile signup page
     path('signup-profile/', signup_profile, name='signup_profile'),
     path('user-profile/', user_profile, name='user_profile'),
+    # Search page
+    path('search/', )
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # Warning: this will not work outside of debug mode!
 # See: https://docs.djangoproject.com/en/4.2/howto/static-files/ and https://docs.djangoproject.com/en/4.2/howto/static-files/deployment/

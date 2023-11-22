@@ -87,3 +87,7 @@ def signup_profile(request):
     else:
         form = CustomUserCreationForm()
     return render(request, 'BookFair/signup_profile.html', {'form': form})
+
+# Search
+def search(request):
+    return render(request, "BookFair/search.html")
