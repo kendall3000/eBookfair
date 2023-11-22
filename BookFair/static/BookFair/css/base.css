@@ -37,7 +37,7 @@ a {
     color: #ca000a!important;
 }
 /* Search */
-.search-box {
+.search-box input {
     border: 0!important;
     border-radius: .25em 0em 0em .25em!important;
     margin-right: 2px;
@@ -47,7 +47,7 @@ a {
 }
 /* Search page search */
 #searchpage-search-box input {
-    background-color: #d3d3d3;
+    background-color: #d3d3d3!important;
 }
 #searchpage-search-box input {
     color: black;
