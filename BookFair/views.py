@@ -107,7 +107,7 @@ def search(request):
         if search_form.is_valid():
             
 
-            query = search_form.clean_q
+            query = search_form.cleaned_data['q']
             query_tokens = query.split()
 
             messages.info(request, ('Query given:' + query))
