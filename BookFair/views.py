@@ -106,7 +106,8 @@ def search(request):
             query = search_form.clean_q
             query_tokens = query.split()
 
-            messages.info(request, 'Tokens given:')
+            messages.info(request, ('Query given:' + query))
+            messages.info(request, 'Tokens:')
             for token in query_tokens:
                 messages.info(request, token)
     else:
