@@ -48,9 +48,8 @@ a {
 /* Search page search */
 #searchpage-search-box input {
     background-color: #d3d3d3!important;
-}
-#searchpage-search-box input {
     color: black;
+    height: 2.375em;
 }
 #searchpage-search-box input::placeholder {
     color: var(--bs-primary-subtle)!important;
