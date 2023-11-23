@@ -9,5 +9,5 @@ class SearchBox(forms.Form):
                 'aria-label': 'Search'
             }
         ),
-        label="Search query"
+        label=""
     )
