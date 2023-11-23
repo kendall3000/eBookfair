@@ -96,7 +96,7 @@ def search(request):
     search_form = SearchBox()
     # Initialize query, query_results to none
     query = None
-    query_results = None
+    query_results_sorted = None
 
     # Get the query in the GET request
     if request.GET.get('q'):
@@ -118,9 +118,28 @@ def search(request):
             sql_query = "SELECT * FROM PRODUCT WHERE MATCH (prod_name, prod_descript) AGAINST ('({}) ({})' IN BOOLEAN MODE)".format(partial_match_input, exact_match_input)
             # Perform raw search query for products
             query_results = Product.objects.raw(sql_query)
+
+            # Sort query results, depending on sort
+            # Pull sort object
+            sort = search_form.cleaned_data['sort']
+            # Sorting options
+            match sort:
+                case "name":
+                    query_results_sorted = query_results.order_by('prod_name')
+                case "price-lh":
+                    query_results_sorted = query_results.order_by('prod_price')
+                case "price-hl":
+                    query_results_sorted = query_results.order_by('-prod_price')
+                case "stock-lh":
+                    query_results_sorted = query_results.order_by('prod_stock')
+                case "stock-hl":
+                    query_results_sorted = query_results.order_by('-prod_stock')
+                case _:
+                    query_results_sorted = query_results.order_by('prod_id').all()
+
         else:
             messages.info(request, 'Invalid search form!')
     else:
         messages.error(request, 'No search query given!') # TODO: make a real "invalid search/no search given" page
 
-    return render(request, "BookFair/search.html", {'search_form': search_form, 'search_results': query_results, 'query': query})
+    return render(request, "BookFair/search.html", {'search_form': search_form, 'search_results': query_results_sorted, 'query': query})
