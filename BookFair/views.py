@@ -118,7 +118,7 @@ def search(request):
             exact_match_input = " ".join(exact_match_tokens)
             ## Partial matches   match*
             partial_match_tokens = [token + "*" for token in query_tokens]
-            partial_match_input = " ".join(partial_match_input)
+            partial_match_input = " ".join(partial_match_tokens)
             # Craft SQL query
             sql_query = "SELECT * FROM PRODUCT WHERE MATCH (prod_name, prod_descript) AGAINST ('({}) ({})' IN BOOLEAN MODE)".format(partial_match_input, exact_match_input)
             # Perform raw search query for products
