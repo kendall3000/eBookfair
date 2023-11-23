@@ -35,6 +35,5 @@ class SearchBox(forms.Form):
             ("stock-lh", "In stock, low to high"),
             ("stock-hl", "In stock, high to low")
         ],
-        default = "",
         label = "Sort by:"
     )
