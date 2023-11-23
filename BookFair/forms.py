@@ -33,6 +33,6 @@ class SearchBox(forms.Form):
             ("price-hl", "Price, high to low"),
             ("stock-lh", "In stock, low to high"),
             ("stock-hl", "In stock, high to low")
-        ]
+        ],
         label = "Sort by:"
     )
