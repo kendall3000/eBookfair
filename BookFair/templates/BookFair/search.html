@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 <!-- Title -->
-{% block title %} Search results | "{{ search.search_query }}" {% endblock %}
+{% block title %} Search results | "{{ search_form.cleaned_data['q'] }}" {% endblock %}
 <!-- Load django apps -->
 {% load static %}
 {% load bootstrap5 %}
@@ -35,8 +35,8 @@
 <div class="container mb-5">
     <div class="row g-3">
         {% comment %}
-        <!-- {% if cat_products %}
-            {% for product in cat_products %}
+        {% if search_results %}
+            {% for product in search_results %}
                 <div class="col-6 col-md-4 col-lg-3">
                     <div class="card">
                         <a href="{% url 'product' product.prod_id %}">
@@ -53,7 +53,7 @@
                     </div>
                 </div>
             {% endfor %}
-        {% endif %} -->
+        {% endif %}
         {% endcomment %}
     </div>
 
