@@ -139,7 +139,7 @@ def search(request):
             # logging.warning(query + ", by " + sort)
 
             # Perform raw search query for products
-            query_results = Product.objects.raw(sql_query)
+            query_results_sorted = Product.objects.raw(sql_query)
 
         else:
             messages.info(request, 'Invalid search form!')
