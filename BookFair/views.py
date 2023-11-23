@@ -95,25 +95,37 @@ def search(request):
     # The search query is to be submitted as a GET request
     search_form = SearchBox()
 
-    # Get whatever the user searched
+    # Get the query in the GET request
     if request.GET.get('q'):
-        # # Separate query into tokens for word-by-word matching
-        # query_tokens = request.GET.get('q').split()
-        # # Separate tokens, where they will be used in the SQL query
-        # exact_match_tokens = ["\"" + token + "\"" for token in query_tokens]
-        # partial_match_tokens = [token + "*" for token in query_tokens]
+        # Make a form object and include the data in the request for validation
         search_form = SearchBox(request.GET)
-        
+        # Validate
         if search_form.is_valid():
-            
-
             query = search_form.cleaned_data['q']
+            # Split into individual tokens for the SQL statement
             query_tokens = query.split()
-
+            # FIXME: messages for verifying that query was read in correctly
             messages.info(request, ('Query given:' + query))
             messages.info(request, 'Tokens:')
             for token in query_tokens:
                 messages.info(request, token)
+
+            # Separate query into tokens for word-by-word matching -- inspired by https://stackoverflow.com/questions/28278150/mysql-efficient-search-with-partial-word-match-and-relevancy-score-fulltext
+            query_tokens = request.GET.get('q').split()
+            # Separate tokens, where they will be used in the SQL query
+            ## Exact matches    "match"
+            exact_match_tokens = ["\"" + token + "\"" for token in query_tokens]
+            exact_match_input = " ".join(exact_match_tokens)
+            ## Partial matches   match*
+            partial_match_tokens = [token + "*" for token in query_tokens]
+            partial_match_input = " ".join(partial_match_input)
+            # Craft SQL query
+            sql_query = "SELECT * FROM PRODUCT WHERE MATCH (prod_name, prod_descript) AGAINST ('({}) ({})' IN BOOLEAN MODE)".format(partial_match_input, exact_match_input)
+            # Perform raw search query for products
+            query_results = Product.objects.raw(sql_query)
+            # FIXME: Print off results for testing!
+            for result in query_results:
+                messages.info(request, result.prod_name)
         else:
             messages.info(request, 'Invalid search form!')
     else:
