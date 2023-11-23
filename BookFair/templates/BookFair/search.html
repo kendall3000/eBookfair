@@ -30,6 +30,7 @@
 <form class="search-box d-flex m-3" role="search" id="searchpage-search-box">
     {{ search_form.q }}
     <button class="btn bg-primary-subtle" type="submit">{% bs_icon 'search' color='white' size='1.25em' %}</button>
+    {{ search_form.sort.label }}
     {{ search_form.sort }}
 </form>
 <hr>
