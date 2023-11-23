@@ -19,11 +19,11 @@
           Sort by
         </button>
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="?sort=name">Name</a></li>
-          <li><a class="dropdown-item" href="?sort=price-lh">Price, low to high</a></li>
-          <li><a class="dropdown-item" href="?sort=price-hl">Price, high to low</a></li>
-          <li><a class="dropdown-item" href="?sort=stock-lh">In stock, low to high</a></li>
-          <li><a class="dropdown-item" href="?sort=stock-hl">In stock, high to low</a></li>
+          <li><a class="dropdown-item" href="{{ request.get_full_path }}?sort=name">Name</a></li>
+          <li><a class="dropdown-item" href="{{ request.get_full_path }}?sort=price-lh">Price, low to high</a></li>
+          <li><a class="dropdown-item" href="{{ request.get_full_path }}?sort=price-hl">Price, high to low</a></li>
+          <li><a class="dropdown-item" href="{{ request.get_full_path }}?sort=stock-lh">In stock, low to high</a></li>
+          <li><a class="dropdown-item" href="{{ request.get_full_path }}?sort=stock-hl">In stock, high to low</a></li>
         </ul>
       </div>
 </div>
