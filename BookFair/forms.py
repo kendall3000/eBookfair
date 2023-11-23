@@ -28,11 +28,13 @@ class SearchBox(forms.Form):
         #     "In stock, high to low"
         #     ]),
         choices = [
+            ("", "Sort by"),
             ("name", "Name"),
             ("price-lh", "Price, low to high"),
             ("price-hl", "Price, high to low"),
             ("stock-lh", "In stock, low to high"),
             ("stock-hl", "In stock, high to low")
         ],
+        default = "",
         label = "Sort by:"
     )
