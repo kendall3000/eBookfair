@@ -122,18 +122,6 @@ def search(request):
             # Use different ORDER BY depending on requested sorting type
             # Pull sort object
             sort = search_form.cleaned_data['sort']
-            # Sorting options
-            match sort:
-                case "name":
-                    sql_query = sql_query + " ORDER BY prod_name ASC"
-                case "price-lh":
-                    sql_query = sql_query + " ORDER BY prod_price ASC"
-                case "price-hl":
-                    sql_query = sql_query + " ORDER BY prod_price DESC"
-                case "stock-lh":
-                    sql_query = sql_query + " ORDER BY prod_stock ASC"
-                case "stock-hl":
-                    sql_query = sql_query + " ORDER BY prod_stock DESC"
 
             # Print log with search query values
             logging.warning(query + ", by " + sort)
