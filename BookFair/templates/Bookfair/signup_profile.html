@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %} Signup and Profile {% endblock %}
+
+{% load bootstrap5 %}
+
+<style>
+    .signup-profile-section {
+        margin-top: 50px;
+    }
+
+    .profile-info {
+        margin-top: 20px;
+    }
+</style>
+
+{% block content %}
+<div class="container signup-profile-section">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 signup-form">
+            <h2 class="text-center">Sign Up</h2>
+            <form method="post" action="{% url 'signup_profile' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    {% if user.is_authenticated %}
+    <div class="row">
+        <div class="col-md-6 offset-md-3 profile-info">
+            <h2 class="text-center">Profile Information</h2>
+            <p>Username: {{ user.username }}</p>
+            <p>Email: {{ user.email }}</p>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
