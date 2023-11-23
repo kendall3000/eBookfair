@@ -97,8 +97,13 @@ def search(request):
 
     # Get whatever the user searched
     if request.GET.get('q'):
-        # Separate query into tokens for word-by-word matching
-        query_tokens = request.GET.get('q').split()
+        # # Separate query into tokens for word-by-word matching
+        # query_tokens = request.GET.get('q').split()
+        # # Separate tokens, where they will be used in the SQL query
+        # exact_match_tokens = ["\"" + token + "\"" for token in query_tokens]
+        # partial_match_tokens = [token + "*" for token in query_tokens]
+        query = search_form.cleaned_data['q']
+        query_tokens = query.split()
 
         messages.info(request, 'Tokens given:')
         for token in query_tokens:
