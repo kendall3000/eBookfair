@@ -139,7 +139,7 @@ def search(request):
             # NOTE: because we are manipulating a SQL statement to a rigid number of possible values, I am deciding to directly modify the statement for selecting the sort.
             query_results_sorted = Product.objects.raw(
                 "SELECT * FROM PRODUCT WHERE MATCH (prod_name, prod_descript) AGAINST ('(%s) (%s)' IN BOOLEAN MODE) ORDER BY {order}".format(order=sort),
-                params = [partial_match_input, exact_match_input]
+                params = [partial_match_tokens, exact_match_tokens]
             )
 
         else:
