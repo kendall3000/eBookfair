@@ -114,28 +114,29 @@ def search(request):
             ## Partial matches   match*
             partial_match_tokens = [token + "*" for token in query_tokens]
             partial_match_input = " ".join(partial_match_tokens)
-            # Craft SQL query
-            sql_query = "SELECT * FROM PRODUCT WHERE MATCH (prod_name, prod_descript) AGAINST ('({}) ({})' IN BOOLEAN MODE)".format(partial_match_input, exact_match_input)
-            # Perform raw search query for products
-            query_results = Product.objects.raw(sql_query)
+            # Craft SQL query, before ORDER BY
+            sql_query = "SELECT * FROM PRODUCT WHERE MATCH (prod_name, prod_descript) AGAINST ('({}) ({})' IN BOOLEAN MODE)".format(partial_match_input, exact_match_input) # TODO: update this to use PARAMS instead, it's unsafe to do it like this (https://docs.djangoproject.com/en/4.2/topics/db/sql/)
 
-            # Sort query results, depending on sort
+            # Use different ORDER BY depending on requested sorting type
             # Pull sort object
             sort = search_form.cleaned_data['sort']
             # Sorting options
             match sort:
                 case "name":
-                    query_results_sorted = query_results.order_by('prod_name')
+                    sql_query = sql_query + " ORDER BY prod_name ASC"
                 case "price-lh":
-                    query_results_sorted = query_results.order_by('prod_price')
+                    sql_query = sql_query + " ORDER BY prod_price ASC"
                 case "price-hl":
-                    query_results_sorted = query_results.order_by('-prod_price')
+                    sql_query = sql_query + " ORDER BY prod_price DESC"
                 case "stock-lh":
-                    query_results_sorted = query_results.order_by('prod_stock')
+                    sql_query = sql_query + " ORDER BY prod_stock ASC"
                 case "stock-hl":
-                    query_results_sorted = query_results.order_by('-prod_stock')
+                    sql_query = sql_query + " ORDER BY prod_stock DESC"
                 case _:
-                    query_results_sorted = query_results.order_by('prod_id').all()
+                    # Do nothing -- the SQL query will just execute without an explicit order.
+
+            # Perform raw search query for products
+            query_results = Product.objects.raw(sql_query)
 
         else:
             messages.info(request, 'Invalid search form!')
