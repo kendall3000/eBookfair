@@ -6,6 +6,8 @@ from django.contrib.auth import login, authenticate
 from django.contrib import messages
 # Model packages
 from BookFair.models import Category, Product,  Cart, UserProfile, CustomUserCreationForm 
+# Form packages
+from BookFair.forms import SearchBox
 # Python packages
 import random
 
@@ -90,4 +92,7 @@ def signup_profile(request):
 
 # Search
 def search(request):
-    return render(request, "BookFair/search.html")
+    # The search query is to be submitted as a GET request
+    search_form = SearchBox()
+
+    return render(request, "BookFair/search.html", {'search_form': search_form})
