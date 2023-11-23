@@ -12,6 +12,14 @@ class SearchBox(forms.Form):
         label=""
     )
     sort = forms.ChoiceField(
+        widget=forms.Choice(
+            attrs={
+                'class': 'btn bg-primary-subtle text-light dropdown-toggle',
+                'type': 'button',
+                'data-bs-toggle': 'dropdown',
+                'aria-expanded': 'false'
+            }
+        ),
         choices = enumerate([
             "Name",
             "Price, low to high",
