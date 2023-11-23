@@ -10,6 +10,8 @@ from BookFair.models import Category, Product,  Cart, UserProfile, CustomUserCre
 from BookFair.forms import SearchBox
 # Python packages
 import random
+# FIXME: logging for testing
+import logging
 
 # Create your views here.
 def home(request):
@@ -132,6 +134,9 @@ def search(request):
                     sql_query = sql_query + " ORDER BY prod_stock ASC"
                 case "stock-hl":
                     sql_query = sql_query + " ORDER BY prod_stock DESC"
+
+            # Print log with search query values
+            logging.warning(query + ", by " + sort)
 
             # Perform raw search query for products
             query_results = Product.objects.raw(sql_query)
