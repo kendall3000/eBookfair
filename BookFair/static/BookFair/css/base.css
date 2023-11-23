@@ -49,7 +49,6 @@ a {
 #searchpage-search-box input {
     background-color: #d3d3d3!important;
     color: black;
-    height: 2.375em;
 }
 #searchpage-search-box input::placeholder {
     color: var(--bs-primary-subtle)!important;

@@ -16,17 +16,16 @@
             Search
         </h1>
     </div>
-    <div class="row">
-        <form class="search-box d-flex mt-3" role="search" id="searchpage-search-box">
-            <div class="col-8">
-                {{ search_form.q }}
-            </div>
-            <div class="col-4">
-                <button class="btn bg-primary-subtle" type="submit">{% bs_icon 'search' color='white' size='1.25em' %}</button>
-                {{ search_form.sort.label }}
-                {{ search_form.sort }}
-            </div>
-        </form>
+    <form class="row search-box d-flex mt-3" role="search" id="searchpage-search-box">
+        <div class="col-md-8 d-flex">
+            {{ search_form.q }}
+            <button class="btn bg-primary-subtle" type="submit">{% bs_icon 'search' color='white' size='1.25em' %}</button>
+        </div>
+        <div class="col-md-4 d-flex justify-content-end align-items-center gap-2 gy-2">
+            {{ search_form.sort.label }}
+            {{ search_form.sort }}
+        </div>
+    </form>
     </div>
 </div>
 <hr>
