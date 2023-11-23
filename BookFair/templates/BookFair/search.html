@@ -10,18 +10,22 @@
 <!-- Product CSS -->
 <link rel="stylesheet" type="text/css" href="{% static 'BookFair/css/product.css' %}">
 <!-- Product listing -->
-<div class="container d-flex align-items-end justify-content-between">
+<div class="container align-items-end justify-content-between">
     <div class="row">
         <h1 class="mt-3 mb-0">
             Search
         </h1>
     </div>
     <div class="row">
-        <form class="search-box d-flex m-3" role="search" id="searchpage-search-box">
-            {{ search_form.q }}
-            <button class="btn bg-primary-subtle" type="submit">{% bs_icon 'search' color='white' size='1.25em' %}</button>
-            {{ search_form.sort.label }}
-            {{ search_form.sort }}
+        <form class="search-box d-flex mt-3" role="search" id="searchpage-search-box">
+            <div class="col-8">
+                {{ search_form.q }}
+            </div>
+            <div class="col-4">
+                <button class="btn bg-primary-subtle" type="submit">{% bs_icon 'search' color='white' size='1.25em' %}</button>
+                {{ search_form.sort.label }}
+                {{ search_form.sort }}
+            </div>
         </form>
     </div>
 </div>
