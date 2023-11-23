@@ -135,7 +135,7 @@ def search(request):
                 case "stock-hl":
                     sql_query = sql_query + " ORDER BY prod_stock DESC"
 
-            Print log with search query values
+            # Print log with search query values
             logging.warning(query + ", by " + sort)
 
             # Perform raw search query for products
