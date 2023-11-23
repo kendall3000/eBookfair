@@ -20,15 +20,8 @@ class SearchBox(forms.Form):
                 'aria-expanded': 'false'
             }
         ),
-        # choices = enumerate([
-        #     "Name",
-        #     "Price, low to high",
-        #     "Price, high to low",
-        #     "In stock, low to high",
-        #     "In stock, high to low"
-        #     ]),
         choices = [
-            ("", "Sort by"),
+            ("", "Sort by:"),
             ("name", "Name"),
             ("price-lh", "Price, low to high"),
             ("price-hl", "Price, high to low"),
