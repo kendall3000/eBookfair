@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 <!-- Title -->
-{% block title %} Search results | "{{ search_form.cleaned_data['q'] }}" {% endblock %}
+{% block title %} Search results {% if query %}| {{ query }}{% endif %}{% endblock %}
 <!-- Load django apps -->
 {% load static %}
 {% load bootstrap5 %}
