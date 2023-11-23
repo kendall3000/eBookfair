@@ -105,16 +105,8 @@ def search(request):
         # Validate
         if search_form.is_valid():
             query = search_form.cleaned_data['q']
-            # Split into individual tokens for the SQL statement
-            query_tokens = query.split()
-            # FIXME: messages for verifying that query was read in correctly
-            messages.info(request, ('Query given:' + query))
-            messages.info(request, 'Tokens:')
-            for token in query_tokens:
-                messages.info(request, token)
-
             # Separate query into tokens for word-by-word matching -- inspired by https://stackoverflow.com/questions/28278150/mysql-efficient-search-with-partial-word-match-and-relevancy-score-fulltext
-            query_tokens = request.GET.get('q').split()
+            query_tokens = query.split()
             # Separate tokens, where they will be used in the SQL query
             ## Exact matches    "match"
             exact_match_tokens = ["\"" + token + "\"" for token in query_tokens]
@@ -126,9 +118,6 @@ def search(request):
             sql_query = "SELECT * FROM PRODUCT WHERE MATCH (prod_name, prod_descript) AGAINST ('({}) ({})' IN BOOLEAN MODE)".format(partial_match_input, exact_match_input)
             # Perform raw search query for products
             query_results = Product.objects.raw(sql_query)
-            # FIXME: Print off results for testing!
-            for result in query_results:
-                messages.info(request, result.prod_name)
         else:
             messages.info(request, 'Invalid search form!')
     else:
