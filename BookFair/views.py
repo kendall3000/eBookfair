@@ -102,7 +102,11 @@ def search(request):
         # # Separate tokens, where they will be used in the SQL query
         # exact_match_tokens = ["\"" + token + "\"" for token in query_tokens]
         # partial_match_tokens = [token + "*" for token in query_tokens]
+        search_form = SearchBox(request.GET)
+        
         if search_form.is_valid():
+            
+
             query = search_form.clean_q
             query_tokens = query.split()
 
