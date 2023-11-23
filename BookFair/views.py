@@ -102,7 +102,7 @@ def search(request):
         # # Separate tokens, where they will be used in the SQL query
         # exact_match_tokens = ["\"" + token + "\"" for token in query_tokens]
         # partial_match_tokens = [token + "*" for token in query_tokens]
-        query = search_form.cleaned_data['q']
+        query = search_form.clean_q
         query_tokens = query.split()
 
         messages.info(request, 'Tokens given:')
