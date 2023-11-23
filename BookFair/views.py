@@ -119,24 +119,24 @@ def search(request):
             # Craft SQL query, before ORDER BY
             sql_query = "SELECT * FROM PRODUCT WHERE MATCH (prod_name, prod_descript) AGAINST ('({}) ({})' IN BOOLEAN MODE)".format(partial_match_input, exact_match_input) # TODO: update this to use PARAMS instead, it's unsafe to do it like this (https://docs.djangoproject.com/en/4.2/topics/db/sql/)
 
-            # # Use different ORDER BY depending on requested sorting type
-            # # Pull sort object
-            # sort = search_form.cleaned_data['sort']
-            # # Sorting options
-            # match sort:
-            #     case "name":
-            #         sql_query = sql_query + " ORDER BY prod_name ASC"
-            #     case "price-lh":
-            #         sql_query = sql_query + " ORDER BY prod_price ASC"
-            #     case "price-hl":
-            #         sql_query = sql_query + " ORDER BY prod_price DESC"
-            #     case "stock-lh":
-            #         sql_query = sql_query + " ORDER BY prod_stock ASC"
-            #     case "stock-hl":
-            #         sql_query = sql_query + " ORDER BY prod_stock DESC"
+            # Use different ORDER BY depending on requested sorting type
+            # Pull sort object
+            sort = search_form.cleaned_data['sort']
+            # Sorting options
+            match sort:
+                case "name":
+                    sql_query = sql_query + " ORDER BY prod_name ASC"
+                case "price-lh":
+                    sql_query = sql_query + " ORDER BY prod_price ASC"
+                case "price-hl":
+                    sql_query = sql_query + " ORDER BY prod_price DESC"
+                case "stock-lh":
+                    sql_query = sql_query + " ORDER BY prod_stock ASC"
+                case "stock-hl":
+                    sql_query = sql_query + " ORDER BY prod_stock DESC"
 
-            # Print log with search query values
-            # logging.warning(query + ", by " + sort)
+            Print log with search query values
+            logging.warning(query + ", by " + sort)
 
             # Perform raw search query for products
             query_results_sorted = Product.objects.raw(sql_query)
