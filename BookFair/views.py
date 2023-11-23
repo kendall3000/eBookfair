@@ -95,4 +95,4 @@ def search(request):
     # The search query is to be submitted as a GET request
     search_form = SearchBox()
 
-    return render(request, "BookFair/search.html", {'q': search_form})
+    return render(request, "BookFair/search.html", {'search_form': search_form})
