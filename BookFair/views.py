@@ -110,6 +110,8 @@ def search(request):
             messages.info(request, 'Tokens:')
             for token in query_tokens:
                 messages.info(request, token)
+        else:
+            messages.info(request, 'Invalid search form!')
     else:
         messages.error(request, 'No search query given!') # TODO: make a real "invalid search/no search given" page
 
