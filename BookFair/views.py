@@ -102,12 +102,13 @@ def search(request):
         # # Separate tokens, where they will be used in the SQL query
         # exact_match_tokens = ["\"" + token + "\"" for token in query_tokens]
         # partial_match_tokens = [token + "*" for token in query_tokens]
-        query = search_form.clean_q
-        query_tokens = query.split()
+        if search_form.is_valid():
+            query = search_form.clean_q
+            query_tokens = query.split()
 
-        messages.info(request, 'Tokens given:')
-        for token in query_tokens:
-            messages.info(request, token)
+            messages.info(request, 'Tokens given:')
+            for token in query_tokens:
+                messages.info(request, token)
     else:
         messages.error(request, 'No search query given!') # TODO: make a real "invalid search/no search given" page
 
