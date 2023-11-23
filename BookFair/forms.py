@@ -12,7 +12,7 @@ class SearchBox(forms.Form):
         label=""
     )
     sort = forms.ChoiceField(
-        widget=forms.Choice(
+        widget=forms.Select(
             attrs={
                 'class': 'btn bg-primary-subtle text-light dropdown-toggle',
                 'type': 'button',
