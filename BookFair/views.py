@@ -100,10 +100,10 @@ def search(request):
         # Separate query into tokens for word-by-word matching
         query_tokens = request.GET.get('q').split()
 
-        messages.info('Tokens given:')
+        messages.info(request, 'Tokens given:')
         for token in query_tokens:
-            messages.info(token)
+            messages.info(request, token)
     else:
-        messages.error('No search query given!') # TODO: make a real "invalid search/no search given" page
+        messages.error(request, 'No search query given!') # TODO: make a real "invalid search/no search given" page
 
     return render(request, "BookFair/search.html", {'search_form': search_form})
