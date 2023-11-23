@@ -132,8 +132,6 @@ def search(request):
                     sql_query = sql_query + " ORDER BY prod_stock ASC"
                 case "stock-hl":
                     sql_query = sql_query + " ORDER BY prod_stock DESC"
-                case _:
-                    # Do nothing -- the SQL query will just execute without an explicit order.
 
             # Perform raw search query for products
             query_results = Product.objects.raw(sql_query)
