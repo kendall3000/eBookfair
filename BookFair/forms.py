@@ -12,5 +12,5 @@ class SearchBox(forms.Form):
         label=""
     )
     sort = forms.ChoiceField(
-        choices = ["name", "price-lh", "price-hl", "stock-lh", "stock-hl"]
+        choices = [enumerate(["name", "price-lh", "price-hl", "stock-lh", "stock-hl"])]
     )
