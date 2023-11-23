@@ -111,7 +111,7 @@ def search(request):
             query_tokens = query.split()
             # Separate tokens, where they will be used in the SQL query
             ## Exact matches    "match"
-            exact_match_tokens = ["\"" + token + "\"" for token in query_tokens]
+            exact_match_tokens = ["\"\"" + token + "\"\"" for token in query_tokens]
             exact_match_input = " ".join(exact_match_tokens)
             ## Partial matches   match*
             partial_match_tokens = [token + "*" for token in query_tokens]
@@ -138,7 +138,7 @@ def search(request):
             # Perform raw search query for products
             # NOTE: because we are manipulating a SQL statement to a rigid number of possible values, I am deciding to directly modify the statement for selecting the sort.
             query_results_sorted = Product.objects.raw(
-                "SELECT * FROM PRODUCT WHERE MATCH (prod_name, prod_descript) AGAINST ('(%s) (%s)' IN BOOLEAN MODE) ORDER BY {order}".format(order=sort),
+                "SELECT * FROM PRODUCT WHERE MATCH (prod_name, prod_descript) AGAINST (%s %s IN BOOLEAN MODE) ORDER BY {order}".format(order=sort),
                 params = [partial_match_tokens, exact_match_tokens]
             )
 
