@@ -111,7 +111,7 @@ def search(request):
             query_tokens = query.split()
             # Separate tokens, where they will be used in the SQL query
             ## Exact matches    "match"
-            exact_match_tokens = ["\"\"" + token + "\"\"" for token in query_tokens]
+            exact_match_tokens = ["\"" + token + "\"" for token in query_tokens]
             exact_match_input = " ".join(exact_match_tokens)
             ## Partial matches   match*
             partial_match_tokens = [token + "*" for token in query_tokens]
