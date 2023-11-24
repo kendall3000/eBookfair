@@ -10,6 +10,6 @@ def category_list(request):
     return {'categories_dict': categories}
 
 def searchbox_nav(request):
-    search_form_nav = SearchBoxFull()
+    search_form_nav = SearchBoxNav()
 
     return {'search_form_nav': search_form_nav}
