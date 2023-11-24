@@ -14,6 +14,8 @@ from BookFair.forms import SearchBoxNav, SearchBoxFull
 import random
 from functools import reduce
 import operator
+# Logger
+import logging
 
 # Create your views here.
 def home(request):
@@ -147,8 +149,8 @@ def search(request):
                 query_results_sorted = query_results.order_by('prod_name')
 
         else:
-            messages.info(request, 'Invalid search form!')
+            logging.error('Invalid search form!')
     else:
-        messages.error(request, 'No search query given!') # TODO: make a real "invalid search/no search given" page
+        logging.error('No search query given!') # TODO: make a real "invalid search/no search given" page
 
     return render(request, "BookFair/search.html", {'search_form': search_form, 'search_results': query_results_sorted, 'query': query})
