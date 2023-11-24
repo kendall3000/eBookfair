@@ -12,8 +12,8 @@ from BookFair.models import Category, Product,  Cart, UserProfile, CustomUserCre
 from BookFair.forms import SearchBox
 # Python packages
 import random
-# FIXME: logging for testing
-import logging
+from functools import reduce
+import operator
 
 # Create your views here.
 def home(request):
@@ -109,20 +109,20 @@ def search(request):
         # Validate
         if search_form.is_valid():
             query = search_form.cleaned_data['q']
-            # # Separate query into tokens for word-by-word matching -- inspired by https://stackoverflow.com/questions/28278150/mysql-efficient-search-with-partial-word-match-and-relevancy-score-fulltext
-            # query_tokens = query.split()
-            # # Separate tokens, where they will be used in the SQL query
-            # ## Exact matches    "match"
-            # exact_match_tokens = ["\"" + token + "\"" for token in query_tokens]
-            # exact_match_input = " ".join(exact_match_tokens)
-            # ## Partial matches   match*
-            # partial_match_tokens = [token + "*" for token in query_tokens]
-            # partial_match_input = " ".join(partial_match_tokens)
+
+            # Separate query into tokens for word-by-word matching -- inspired by https://stackoverflow.com/questions/28278150/mysql-efficient-search-with-partial-word-match-and-relevancy-score-fulltext
+            query_tokens = query.split()
 
             query_results = Product.objects.filter(
-                Q(prod_name__icontains = query) | Q(prod_descript__icontains = query)
+                # Q(prod_name__icontains = token)
+                reduce(operator.or_, [Q(prod_name__icontains = token) for token in query_tokens])
+                |
+                reduce(operator.or_, [Q(prod_descript__icontains = token) for token in query_tokens])
+                # Q(prod_descript__icontains = query)
             )
-            # Use different ORDER BY depending on requested sorting type
+
+            # Sort time
+
             # Pull sort object
             sort = search_form.cleaned_data['sort']
             # Sorting options
