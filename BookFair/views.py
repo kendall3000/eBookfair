@@ -109,44 +109,36 @@ def search(request):
         # Validate
         if search_form.is_valid():
             query = search_form.cleaned_data['q']
-            # Separate query into tokens for word-by-word matching -- inspired by https://stackoverflow.com/questions/28278150/mysql-efficient-search-with-partial-word-match-and-relevancy-score-fulltext
-            query_tokens = query.split()
-            # Separate tokens, where they will be used in the SQL query
-            ## Exact matches    "match"
-            exact_match_tokens = ["\"" + token + "\"" for token in query_tokens]
-            exact_match_input = " ".join(exact_match_tokens)
-            ## Partial matches   match*
-            partial_match_tokens = [token + "*" for token in query_tokens]
-            partial_match_input = " ".join(partial_match_tokens)
+            # # Separate query into tokens for word-by-word matching -- inspired by https://stackoverflow.com/questions/28278150/mysql-efficient-search-with-partial-word-match-and-relevancy-score-fulltext
+            # query_tokens = query.split()
+            # # Separate tokens, where they will be used in the SQL query
+            # ## Exact matches    "match"
+            # exact_match_tokens = ["\"" + token + "\"" for token in query_tokens]
+            # exact_match_input = " ".join(exact_match_tokens)
+            # ## Partial matches   match*
+            # partial_match_tokens = [token + "*" for token in query_tokens]
+            # partial_match_input = " ".join(partial_match_tokens)
 
+            query_results = Product.objects.filter(
+                Q(prod_name__icontains = query) | Q(prod_descript__icontains = query)
+            )
             # Use different ORDER BY depending on requested sorting type
             # Pull sort object
             sort = search_form.cleaned_data['sort']
             # Sorting options
-            # match sort:
-            #     case "name":
-            #         sql_sort = "prod_name ASC"
-            #     case "price-lh":
-            #         sql_sort = "prod_price ASC"
-            #     case "price-hl":
-            #         sql_sort = "prod_price DESC"
-            #     case "stock-lh":
-            #         sql_sort = "prod_stock ASC"
-            #     case "stock-hl":
-            #         sql_sort = "prod_stock DESC"
-            #     case _:
-            #         sql_sort = "prod_id ASC"
-
-            # Perform raw search query for products
-            # NOTE: because we are manipulating a SQL statement to a rigid number of possible values, I am deciding to directly modify the statement for selecting the sort.
-            # query_results_sorted = Product.objects.raw(
-            #     "SELECT * FROM PRODUCT WHERE MATCH (prod_name, prod_descript) AGAINST (%s %s IN BOOLEAN MODE) ORDER BY {order}".format(order=sort),
-            #     params = [partial_match_tokens, exact_match_tokens]
-            # )
-
-            query_results_sorted = Product.objects.filter(
-                Q(prod_name__icontains = query) | Q(prod_descript__icontains = query)
-            )
+            match request.GET.get('sort'):
+                case "name":
+                    query_results_sorted = query_results.order_by('prod_name')
+                case "price-lh":
+                    query_results_sorted = query_results.order_by('prod_price')
+                case "price-hl":
+                    query_results_sorted = query_results.order_by('-prod_price')
+                case "stock-lh":
+                    query_results_sorted = query_results.order_by('prod_stock')
+                case "stock-hl":
+                    query_results_sorted = query_results.order_by('-prod_stock')
+                case _:
+                    query_results_sorted = query_results.order_by('prod_id')
 
         else:
             messages.info(request, 'Invalid search form!')
