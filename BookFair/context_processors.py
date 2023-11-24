@@ -3,6 +3,7 @@
 
 from BookFair.models import Category
 from BookFair.forms import SearchBoxNav
+from BookFair.views import search
 
 def category_list(request):
     categories = Category.objects.all().order_by('cat_id')
@@ -12,4 +13,7 @@ def category_list(request):
 def searchbox_nav(request):
     search_form_nav = SearchBoxNav()
 
-    return {'search_form_nav': search_form_nav}
+    if search_form_nav.is_valid():
+        return search(request)
+    else:
+        return {'search_form_nav': search_form_nav}

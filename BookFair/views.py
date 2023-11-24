@@ -111,7 +111,7 @@ def search(request):
         if search_form_full:
             search_form = SearchBoxFull(request.GET)
         else:
-            search_form = SearchBoxNav(request.GET)
+            search_form = SearchBoxNav(request.GET) 
         # Validate
         if search_form.is_valid():
             query = search_form.cleaned_data['q']
