@@ -122,23 +122,25 @@ def search(request):
             )
 
             # Sort time
-
             # Pull sort object
             sort = search_form.cleaned_data['sort']
             # Sorting options
-            match sort:
-                case "name":
-                    query_results_sorted = query_results.order_by('prod_name')
-                case "price-lh":
-                    query_results_sorted = query_results.order_by('prod_price')
-                case "price-hl":
-                    query_results_sorted = query_results.order_by('-prod_price')
-                case "stock-lh":
-                    query_results_sorted = query_results.order_by('prod_stock')
-                case "stock-hl":
-                    query_results_sorted = query_results.order_by('-prod_stock')
-                case _:
-                    query_results_sorted = query_results.order_by('prod_name')
+            if sort:
+                match sort:
+                    case "name":
+                        query_results_sorted = query_results.order_by('prod_name')
+                    case "price-lh":
+                        query_results_sorted = query_results.order_by('prod_price')
+                    case "price-hl":
+                        query_results_sorted = query_results.order_by('-prod_price')
+                    case "stock-lh":
+                        query_results_sorted = query_results.order_by('prod_stock')
+                    case "stock-hl":
+                        query_results_sorted = query_results.order_by('-prod_stock')
+                    case _:
+                        query_results_sorted = query_results.order_by('prod_name')
+            else:
+                query_results_sorted = query_results.order_by('prod_name')
 
         else:
             messages.info(request, 'Invalid search form!')
