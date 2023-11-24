@@ -52,8 +52,10 @@
             {% endfor %}
 
         {% else %}
-            {% bs_icon 'emoji-frown' color='#a1a1a1' size='4em' %}
-            <span class="fs-1"> No results!</span>
+            <div class="col-12 d-flex justify-content-center align-items-center gap-3 mt-5">
+                {% bs_icon 'emoji-frown-fill' color='#6c757d' size='4em' %}
+                <span class="fs-1 text-secondary">No results!</span>
+            </div>
         {% endif %}
     </div>
 </div>
