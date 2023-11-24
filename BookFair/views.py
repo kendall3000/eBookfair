@@ -100,7 +100,6 @@ def signup_profile(request):
 def search(request):
     # The search query is to be submitted as a GET request
     search_form_full = SearchBoxFull()
-    search_form_nav = SearchBoxNav()
     # Initialize query, query_results to none
     query = None
     query_results_sorted = None
@@ -153,4 +152,4 @@ def search(request):
     else:
         logging.error('No search query given!') # TODO: make a real "invalid search/no search given" page
 
-    return render(request, "BookFair/search.html", {'search_form': search_form, 'search_results': query_results_sorted, 'query': query})
+    return render(request, "BookFair/search.html", {'search_form': search_form_full, 'search_results': query_results_sorted, 'query': query})
