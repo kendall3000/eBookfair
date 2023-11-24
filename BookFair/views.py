@@ -126,7 +126,7 @@ def search(request):
             # Pull sort object
             sort = search_form.cleaned_data['sort']
             # Sorting options
-            match request.GET.get('sort'):
+            match sort:
                 case "name":
                     query_results_sorted = query_results.order_by('prod_name')
                 case "price-lh":
@@ -137,7 +137,7 @@ def search(request):
                     query_results_sorted = query_results.order_by('prod_stock')
                 case "stock-hl":
                     query_results_sorted = query_results.order_by('-prod_stock')
-                case None | _:
+                case _:
                     query_results_sorted = query_results.order_by('prod_name')
 
         else:
