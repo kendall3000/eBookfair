@@ -50,6 +50,10 @@
                     </div>
                 </div>
             {% endfor %}
+
+        {% else %}
+            {% bs_icon 'emoji-frown' color='#a1a1a1' size='4em' %}
+            <span class="fs-1"> No results!</span>
         {% endif %}
     </div>
 </div>
