@@ -4,6 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
+from django.db.models import Q
+
 # Model packages
 from BookFair.models import Category, Product,  Cart, UserProfile, CustomUserCreationForm 
 # Form packages
@@ -121,25 +123,29 @@ def search(request):
             # Pull sort object
             sort = search_form.cleaned_data['sort']
             # Sorting options
-            match sort:
-                case "name":
-                    sql_sort = "prod_name ASC"
-                case "price-lh":
-                    sql_sort = "prod_price ASC"
-                case "price-hl":
-                    sql_sort = "prod_price DESC"
-                case "stock-lh":
-                    sql_sort = "prod_stock ASC"
-                case "stock-hl":
-                    sql_sort = "prod_stock DESC"
-                case _:
-                    sql_sort = "prod_id ASC"
+            # match sort:
+            #     case "name":
+            #         sql_sort = "prod_name ASC"
+            #     case "price-lh":
+            #         sql_sort = "prod_price ASC"
+            #     case "price-hl":
+            #         sql_sort = "prod_price DESC"
+            #     case "stock-lh":
+            #         sql_sort = "prod_stock ASC"
+            #     case "stock-hl":
+            #         sql_sort = "prod_stock DESC"
+            #     case _:
+            #         sql_sort = "prod_id ASC"
 
             # Perform raw search query for products
             # NOTE: because we are manipulating a SQL statement to a rigid number of possible values, I am deciding to directly modify the statement for selecting the sort.
-            query_results_sorted = Product.objects.raw(
-                "SELECT * FROM PRODUCT WHERE MATCH (prod_name, prod_descript) AGAINST (%s %s IN BOOLEAN MODE) ORDER BY {order}".format(order=sort),
-                params = [partial_match_tokens, exact_match_tokens]
+            # query_results_sorted = Product.objects.raw(
+            #     "SELECT * FROM PRODUCT WHERE MATCH (prod_name, prod_descript) AGAINST (%s %s IN BOOLEAN MODE) ORDER BY {order}".format(order=sort),
+            #     params = [partial_match_tokens, exact_match_tokens]
+            # )
+
+            query_results_sorted = Product.objects.get(
+                Q(prod_name__icontains = query) | Q(prod_desc__icontains = query)
             )
 
         else:
