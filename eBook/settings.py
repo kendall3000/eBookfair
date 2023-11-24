@@ -69,7 +69,7 @@ TEMPLATES = [
 
                 # Processor to display categories across multiple webpages
                 # See: https://stackoverflow.com/questions/22872106/fetch-data-from-db-in-base-template-django-python
-                "BookFair.context_processors.category_list"
+                "BookFair.context_processors.category_list",
                 "BookFair.context_processors.searchbox_nav"
             ],
         },
