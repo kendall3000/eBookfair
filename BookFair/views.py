@@ -9,7 +9,7 @@ from django.db.models import Q
 # Model packages
 from BookFair.models import Category, Product,  Cart, UserProfile, CustomUserCreationForm 
 # Form packages
-from BookFair.forms import SearchBox
+from BookFair.forms import SearchBoxFull
 # Python packages
 import random
 from functools import reduce
