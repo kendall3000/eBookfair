@@ -107,8 +107,8 @@ def search(request):
     # Get the query in the GET request
     if request.GET.get('q'):
         # Make a form object and include the data in the request for validation
-        ## First attempt it with SearchBoxFull
-        search_form = SearchBoxFull(request.GET)
+        ## First attempt it with SearchBoxFull (also setting search_form_full to fill it in w/ user value)
+        search_form = search_form_full = SearchBoxFull(request.GET)
         ## Check if the form is not valid -- if it isn't, update it to check the nav form submission
         if not search_form.is_valid():
             search_form = SearchBoxNav(request.GET)
