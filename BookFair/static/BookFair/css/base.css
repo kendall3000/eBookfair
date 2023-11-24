@@ -37,17 +37,28 @@ a {
     color: #ca000a!important;
 }
 /* Search */
-#search-box input {
-    color: #ffdede!important;
+.search-box input {
     border: 0!important;
     border-radius: .25em 0em 0em .25em!important;
     margin-right: 2px;
 }
-#search-box input::placeholder {
-    color: #ca000a!important;
-}
-#search-box button {
+.search-box button {
     border-radius: 0em .25em .25em 0em!important;
+}
+/* Search page search */
+#searchpage-search-box input {
+    background-color: #d3d3d3!important;
+    color: black;
+}
+#searchpage-search-box input::placeholder {
+    color: var(--bs-primary-subtle)!important;
+}
+/* Navbar search */
+#nav-search-box input {
+    color: #ffdede!important;
+}
+#nav-search-box input::placeholder {
+    color: #ca000a!important;
 }
 /* Dropdown */
 .dropdown-item {
