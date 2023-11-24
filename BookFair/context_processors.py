@@ -13,7 +13,4 @@ def category_list(request):
 def searchbox_nav(request):
     search_form_nav = SearchBoxNav()
 
-    if search_form_nav.is_valid():
-        return search(request)
-    else:
-        return {'search_form_nav': search_form_nav}
+    return {'search_form_nav': search_form_nav}
