@@ -144,7 +144,7 @@ def search(request):
             #     params = [partial_match_tokens, exact_match_tokens]
             # )
 
-            query_results_sorted = Product.objects.get(
+            query_results_sorted = Product.objects.filter(
                 Q(prod_name__icontains = query) | Q(prod_descript__icontains = query)
             )
 
