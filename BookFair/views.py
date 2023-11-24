@@ -9,7 +9,7 @@ from django.db.models import Q
 # Model packages
 from BookFair.models import Category, Product,  Cart, UserProfile, CustomUserCreationForm 
 # Form packages
-from BookFair.forms import SearchBoxFull
+from BookFair.forms import SearchBoxNav, SearchBoxFull
 # Python packages
 import random
 from functools import reduce
@@ -97,7 +97,8 @@ def signup_profile(request):
 # Search
 def search(request):
     # The search query is to be submitted as a GET request
-    search_form = SearchBoxFull()
+    search_form_full = SearchBoxFull()
+    search_form_nav = SearchBoxNav()
     # Initialize query, query_results to none
     query = None
     query_results_sorted = None
@@ -105,7 +106,10 @@ def search(request):
     # Get the query in the GET request
     if request.GET.get('q'):
         # Make a form object and include the data in the request for validation
-        search_form = SearchBoxFull(request.GET)
+        if search_form_full:
+            search_form = SearchBoxFull(request.GET)
+        else:
+            search_form = SearchBoxNav(request.GET)
         # Validate
         if search_form.is_valid():
             query = search_form.cleaned_data['q']
