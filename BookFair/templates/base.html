@@ -45,7 +45,7 @@
                     </ul>
                     <!-- Search -->
                     <form class="d-flex ms-auto search-box" role="search" id="nav-search-box">
-                        <input class="form-control bg-primary-subtle text-emphasis" type="search" placeholder="Search" aria-label="Search">
+                        {{ search_form_nav.q }}
                         <button class="btn bg-primary-subtle" type="submit">{% bs_icon 'search' color='white' size='1.25em' %}</button>
                     </form>
                     <!-- Spacers between navbar; collapsible container messes w/ ability to use gaps -->

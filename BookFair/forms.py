@@ -1,5 +1,17 @@
 from django import forms
 
+class SearchBoxNav(forms.Form):
+    q = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control bg-primary-subtle text-emphasis',
+                'type': 'search',
+                'placeholder': 'Search',
+                'aria-label': 'Search'
+            }
+        )
+    )
+
 class SearchBoxFull(forms.Form):
     q = forms.CharField(
         widget=forms.TextInput(
