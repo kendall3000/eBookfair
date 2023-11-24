@@ -43,7 +43,7 @@ def category(request, cat_id):
         case "stock-hl":
             cat_products_sorted = cat_products.order_by('-prod_stock')
         case _:
-            cat_products_sorted = cat_products.order_by('prod_id').all()
+            cat_products_sorted = cat_products.order_by('prod_name').all()
 
     return render(request, "BookFair/category.html", {"category": req_category, "cat_products": cat_products_sorted})
 
@@ -137,8 +137,8 @@ def search(request):
                     query_results_sorted = query_results.order_by('prod_stock')
                 case "stock-hl":
                     query_results_sorted = query_results.order_by('-prod_stock')
-                case _:
-                    query_results_sorted = query_results.order_by('prod_id')
+                case None | _:
+                    query_results_sorted = query_results.order_by('prod_name')
 
         else:
             messages.info(request, 'Invalid search form!')
