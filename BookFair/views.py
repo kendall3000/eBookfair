@@ -129,10 +129,10 @@ def search(request):
             )
 
             # Sort time
-            # Pull sort object
-            sort = search_form.cleaned_data['sort']
-            # Sorting options
-            if sort:
+            # Try to get sort -- if it's not in the POST request, just order it by name
+            try:
+                sort = search_form.cleaned_data['sort']
+
                 match sort:
                     case "name":
                         query_results_sorted = query_results.order_by('prod_name')
@@ -146,7 +146,7 @@ def search(request):
                         query_results_sorted = query_results.order_by('-prod_stock')
                     case _:
                         query_results_sorted = query_results.order_by('prod_name')
-            else:
+            except KeyError:
                 query_results_sorted = query_results.order_by('prod_name')
         else:
             logging.error('Invalid search form!')
