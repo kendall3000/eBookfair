@@ -145,7 +145,7 @@ def search(request):
             # )
 
             query_results_sorted = Product.objects.get(
-                Q(prod_name__icontains = query) | Q(prod_desc__icontains = query)
+                Q(prod_name__icontains = query) | Q(prod_descript__icontains = query)
             )
 
         else:
