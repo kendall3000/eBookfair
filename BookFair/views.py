@@ -108,11 +108,12 @@ def search(request):
     # Get the query in the GET request
     if request.GET.get('q'):
         # Make a form object and include the data in the request for validation
-        if search_form_full:
-            search_form = SearchBoxFull(request.GET)
-        else:
-            search_form = SearchBoxNav(request.GET) 
-        # Validate
+        ## First attempt it with SearchBoxFull
+        search_form = SearchBoxFull(request.GET)
+        ## Check if the form is not valid -- if it isn't, update it to check the nav form submission
+        if not search_form.is_valid():
+            search_form = SearchBoxNav(request.GET)
+        ## Finally, if the form is valid on either try, get its query; if it's not, log an error.
         if search_form.is_valid():
             query = search_form.cleaned_data['q']
 
@@ -147,7 +148,6 @@ def search(request):
                         query_results_sorted = query_results.order_by('prod_name')
             else:
                 query_results_sorted = query_results.order_by('prod_name')
-
         else:
             logging.error('Invalid search form!')
     else:
