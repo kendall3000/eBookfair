@@ -97,7 +97,7 @@ def signup_profile(request):
 # Search
 def search(request):
     # The search query is to be submitted as a GET request
-    search_form = SearchBox()
+    search_form = SearchBoxFull()
     # Initialize query, query_results to none
     query = None
     query_results_sorted = None
@@ -105,7 +105,7 @@ def search(request):
     # Get the query in the GET request
     if request.GET.get('q'):
         # Make a form object and include the data in the request for validation
-        search_form = SearchBox(request.GET)
+        search_form = SearchBoxFull(request.GET)
         # Validate
         if search_form.is_valid():
             query = search_form.cleaned_data['q']

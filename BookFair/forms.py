@@ -1,6 +1,6 @@
 from django import forms
 
-class SearchBox(forms.Form):
+class SearchBoxFull(forms.Form):
     q = forms.CharField(
         widget=forms.TextInput(
             attrs={
