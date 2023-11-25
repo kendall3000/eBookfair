@@ -44,8 +44,8 @@ class SearchBoxFull(forms.Form):
         label = "Sort by:"
     )
 
-class LoginForm(AuthenticationForm):
+# class LoginForm(AuthenticationForm):
     
-    class Meta:
-        model = User
-        fields = AuthenticationForm.Meta.fields
+#     class Meta:
+#         model = User
+#         fields = AuthenticationForm.Meta.fields

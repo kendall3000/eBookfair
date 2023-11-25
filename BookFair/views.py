@@ -9,7 +9,7 @@ from django.db.models import Q
 # Model packages
 from BookFair.models import Category, Product,  Cart, UserProfile, CustomUserCreationForm 
 # Form packages
-from BookFair.forms import SearchBoxNav, SearchBoxFull, LoginForm
+from BookFair.forms import SearchBoxNav, SearchBoxFull#, LoginForm
 # Python packages
 import random
 from functools import reduce
@@ -97,7 +97,7 @@ def signup_profile(request, form_type):
         pass
     else:
         create_account_form = CustomUserCreationForm()
-        login_account_form = LoginForm()
+        login_account_form = AuthenticationForm()
     return render(request, 'BookFair/signup_profile.html', {'create_account_form': create_account_form, 'login_account_form': login_account_form})
 
 # Search
