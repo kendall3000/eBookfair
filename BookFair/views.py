@@ -80,7 +80,7 @@ def user_profile(request):
     user = request.user
     return render(request, 'BookFair/user_profile.html', {'user': user})
 
-def signup_profile(request, form_type):
+def signup_profile(request, form_type='none'):
     if form_type == 'signup':
         if request.method == 'POST':
             form = UserCreationForm(request.POST)
