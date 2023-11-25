@@ -56,7 +56,7 @@
                             {% endif %}
                         {% endfor %}
                     {% endif %}
-                    <form method="post" action="{% url 'signup_profile' 'signup' %}">
+                    <form method="post" action="{% url 'signup_profile' %}">
                         {% csrf_token %}
                         {{ create_account_form.as_p }}
                         <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
@@ -68,7 +68,7 @@
             <div class="row">
                 <div class="col-md-6 offset-md-3 login-form">
                     <h2 class="text-center">Log in</h2>
-                    <form method="post" action="{% url 'signup_profile' 'login' %}">
+                    <form method="post" action="{% url 'signup_profile' %}">
                         {% csrf_token %}
                         {{ login_account_form.as_p }}
                         <button type="submit" class="btn btn-primary btn-block">Log in</button>

@@ -80,21 +80,18 @@ def user_profile(request):
     user = request.user
     return render(request, 'BookFair/user_profile.html', {'user': user})
 
-def signup_profile(request, form_type='none'):
-    if form_type == 'signup':
-        if request.method == 'POST':
-            form = UserCreationForm(request.POST)
-            if form.is_valid():
-                user = form.save()
-                # Create a user profile
-                UserProfile.objects.create(user=user)
-                login(request, user)
-                messages.success(request, 'Account created successfully!')
-                return redirect('user_profile')
-            else:
-                messages.error(request, 'Error creating your account. Please check the provided information.')
-    elif form_type == 'login':
-        pass
+def signup_profile(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            # Create a user profile
+            UserProfile.objects.create(user=user)
+            login(request, user)
+            messages.success(request, 'Account created successfully!')
+            return redirect('user_profile')
+        else:
+            messages.error(request, 'Error creating your account. Please check the provided information.')
     else:
         create_account_form = CustomUserCreationForm()
         login_account_form = AuthenticationForm()
