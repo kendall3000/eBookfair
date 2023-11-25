@@ -25,14 +25,41 @@
         </div>
     </div>
     {% else %}
-    <div class="row">
-        <div class="col-md-6 offset-md-3 signup-form">
-            <h2 class="text-center">Sign Up</h2>
-            <form method="post" action="{% url 'signup_profile' %}">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
-            </form>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="signup-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+            <div class="row">
+                <div class="col-md-6 offset-md-3 signup-form">
+                    <h2 class="text-center">Sign Up</h2>
+                    <form method="post" action="{% url 'signup_profile' %}">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade show active" id="login-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+            <div class="row">
+                <div class="col-md-6 offset-md-3 login-form">
+                    <h2 class="text-center">Log in</h2>
+                    <form method="post" action="{% url 'signup_profile' %}">
+                        <div class="mb-3">
+                            <label for="login-email-input" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="login-email-input" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="login-password-input" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="login-password-input">                        
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
     {% endif %}
