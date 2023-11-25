@@ -18,6 +18,14 @@
 <div class="container signup-profile-section">
     {% if user.is_authenticated %}
     <div class="row">
+        <div class="col-md-6 offset-md-3 profile-info">
+            <h2 class="text-center">Profile Information</h2>
+            <p>Username: {{ user.username }}</p>
+            <p>Email: {{ user.email }}</p>
+        </div>
+    </div>
+    {% else %}
+    <div class="row">
         <div class="col-md-6 offset-md-3 signup-form">
             <h2 class="text-center">Sign Up</h2>
             <form method="post" action="{% url 'signup_profile' %}">
@@ -25,14 +33,6 @@
                 {{ form.as_p }}
                 <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
             </form>
-        </div>
-    </div>
-    {% else %}
-    <div class="row">
-        <div class="col-md-6 offset-md-3 profile-info">
-            <h2 class="text-center">Profile Information</h2>
-            <p>Username: {{ user.username }}</p>
-            <p>Email: {{ user.email }}</p>
         </div>
     </div>
     {% endif %}
