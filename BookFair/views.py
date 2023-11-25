@@ -81,6 +81,10 @@ def user_profile(request):
     return render(request, 'BookFair/user_profile.html', {'user': user})
 
 def signup_profile(request):
+    # Creating these, to return if form is made nonexistent
+    create_account_form = CustomUserCreationForm()
+    login_account_form = AuthenticationForm()
+
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
