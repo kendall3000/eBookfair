@@ -107,9 +107,3 @@ class UserProfile(models.Model):
     
     def __str__(self):
         return self.user.username
-
-class CustomUserCreationForm(UserCreationForm):
-
-    class Meta:
-        model = User
-        fields = UserCreationForm.Meta.fields
