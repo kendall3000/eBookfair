@@ -16,6 +16,7 @@
 
 {% block content %}
 <div class="container signup-profile-section">
+    {% if user.is_authenticated %}
     <div class="row">
         <div class="col-md-6 offset-md-3 signup-form">
             <h2 class="text-center">Sign Up</h2>
@@ -26,8 +27,7 @@
             </form>
         </div>
     </div>
-
-    {% if user.is_authenticated %}
+    {% else %}
     <div class="row">
         <div class="col-md-6 offset-md-3 profile-info">
             <h2 class="text-center">Profile Information</h2>
