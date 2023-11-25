@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.forms import AuthenticationForm
 
 class SearchBoxNav(forms.Form):
     q = forms.CharField(
@@ -41,3 +42,9 @@ class SearchBoxFull(forms.Form):
         ],
         label = "Sort by:"
     )
+
+class LoginForm(AuthenticationForm):
+    
+    class Meta:
+        model = User
+        fields = AuthenticationForm.Meta.fields

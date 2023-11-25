@@ -9,7 +9,7 @@ from django.db.models import Q
 # Model packages
 from BookFair.models import Category, Product,  Cart, UserProfile, CustomUserCreationForm 
 # Form packages
-from BookFair.forms import SearchBoxNav, SearchBoxFull
+from BookFair.forms import SearchBoxNav, SearchBoxFull, LoginForm
 # Python packages
 import random
 from functools import reduce
@@ -80,21 +80,25 @@ def user_profile(request):
     user = request.user
     return render(request, 'BookFair/user_profile.html', {'user': user})
 
-def signup_profile(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            # Create a user profile
-            UserProfile.objects.create(user=user)
-            login(request, user)
-            messages.success(request, 'Account created successfully!')
-            return redirect('user_profile')
-        else:
-            messages.error(request, 'Error creating your account. Please check the provided information.')
+def signup_profile(request, form_type):
+    if form_type == 'signup':
+        if request.method == 'POST':
+            form = UserCreationForm(request.POST)
+            if form.is_valid():
+                user = form.save()
+                # Create a user profile
+                UserProfile.objects.create(user=user)
+                login(request, user)
+                messages.success(request, 'Account created successfully!')
+                return redirect('user_profile')
+            else:
+                messages.error(request, 'Error creating your account. Please check the provided information.')
+    elif form_type == 'login':
+        pass
     else:
-        form = CustomUserCreationForm()
-    return render(request, 'BookFair/signup_profile.html', {'form': form})
+        create_account_form = CustomUserCreationForm()
+        login_account_form = LoginForm()
+    return render(request, 'BookFair/signup_profile.html', {'create_account_form': create_account_form, 'login_account_form': login_account_form})
 
 # Search
 def search(request):

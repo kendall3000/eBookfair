@@ -56,9 +56,9 @@
                             {% endif %}
                         {% endfor %}
                     {% endif %}
-                    <form method="post" action="{% url 'signup_profile' %}">
+                    <form method="post" action="{% url 'signup_profile' 'signup' %}">
                         {% csrf_token %}
-                        {{ form.as_p }}
+                        {{ create_account_form.as_p }}
                         <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
                     </form>
                 </div>
@@ -68,16 +68,10 @@
             <div class="row">
                 <div class="col-md-6 offset-md-3 login-form">
                     <h2 class="text-center">Log in</h2>
-                    <form method="post" action="{% url 'signup_profile' %}">
-                        <div class="mb-3">
-                            <label for="login-email-input" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="login-email-input" aria-describedby="emailHelp">
-                        </div>
-                        <div class="mb-3">
-                            <label for="login-password-input" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="login-password-input">                        
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+                    <form method="post" action="{% url 'signup_profile' 'login' %}">
+                        {% csrf_token %}
+                        {{ login_account_form.as_p }}
+                        <button type="submit" class="btn btn-primary btn-block">Log in</button>
                     </form>
                 </div>
             </div>
