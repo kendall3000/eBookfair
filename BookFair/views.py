@@ -137,11 +137,15 @@ class signup(FormView):
         form = self.get_form()
         if form.is_valid():
             # TODO: check that password is the same -- form validation does not help here
-
-            messages.success(request, "Successfully signed up!")
+            if form.cleaned_data['password1'] & form.fields['password2']:
+                messages.success(request, "Successfully signed up!")
+            else:
+                messages.error(request, "Invalid password.")
+                return self.form_invalid(form)
+            
             return self.form_valid(form)
-        else:
-            return self.form_invalid(form)
+
+        return self.form_invalid(form)
 
 # Login
 class login(LoginView):
