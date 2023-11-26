@@ -122,7 +122,7 @@ def signup_profile(request):
 # 'create_account_form': create_account_form,
 
 # Login
-def login(LoginView):
+class login(LoginView):
 
     def get_success_url(self):
         return HttpResponseRedirect("/signup-profile/") # FIXME: change to profile/ once you get that figured out
