@@ -141,6 +141,6 @@ class LoginForm(AuthenticationForm):
     
     prefix = "login"
 
-    class Meta(AuthenticationForm.Meta):
+    class Meta:
         model = User
-        fields = AuthenticationForm.Meta.fields
+        fields = ["username", "password"]
