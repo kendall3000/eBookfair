@@ -124,7 +124,7 @@ def signup_profile(request):
 # 'create_account_form': create_account_form,
 
 class signup(FormView):
-    template_name = "signup.html"
+    template_name = "BookFair/signup.html"
     form_class = CustomerSignupForm
 
 # Login
