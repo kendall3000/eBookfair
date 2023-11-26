@@ -101,7 +101,7 @@ def signup_profile(request):
             else:
                 messages.error(request, "Wrong credentials. Please check your username and password.")
             # Clear out form values
-            form = login_account_form = CustomerSignupForm()
+            form = login_account_form = LoginForm()
 
         # form = UserCreationForm(request.POST)
         # if form.is_valid():
