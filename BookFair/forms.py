@@ -1,5 +1,6 @@
 from django import forms
-from django.forms import ModelForm
+from django.contrib.auth.password_validation import validate_password
+from django.core.validators import validate_email
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from BookFair.models import Customer
@@ -63,7 +64,8 @@ class CustomerSignupForm(forms.Form):
                 'type': 'password'
             }
         ),
-        label = "Password"
+        label = "Password",
+        validators = [validate_password]
     )
     password2 = forms.CharField(
         widget=forms.PasswordInput(
@@ -72,7 +74,8 @@ class CustomerSignupForm(forms.Form):
                 'type': 'password'
             }
         ),
-        label = "Retype password"
+        label = "Retype password",
+        validators = [validate_password]
     )
     first_name = forms.CharField(
         widget=forms.TextInput(
@@ -100,7 +103,8 @@ class CustomerSignupForm(forms.Form):
                 'placeholder': 'myaddress@example.com'
             }
         ),
-        label = "Email"
+        label = "Email",
+        validators = [validate_email]
     )
     initial_name = forms.CharField(
         widget=forms.TextInput(
