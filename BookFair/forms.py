@@ -47,7 +47,7 @@ class SearchBoxFull(forms.Form):
     )
 
 class CustomerSignupForm(forms.Form):
-    username = forms.charField(
+    username = forms.CharField(
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
@@ -56,7 +56,7 @@ class CustomerSignupForm(forms.Form):
         ),
         label = "Username"
     )
-    password = forms.charField(
+    password = forms.CharField(
         widget=forms.PasswordInput(
             attrs={
                 'class': 'form-control',
@@ -65,7 +65,7 @@ class CustomerSignupForm(forms.Form):
         ),
         label = "Password"
     )
-    first_name = forms.charField(
+    first_name = forms.CharField(
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
@@ -74,7 +74,7 @@ class CustomerSignupForm(forms.Form):
         ),
         label = "First name"
     )
-    last_name = forms.charField(
+    last_name = forms.CharField(
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
@@ -83,7 +83,7 @@ class CustomerSignupForm(forms.Form):
         ),
         label = "Last name"
     )
-    email = forms.charField(
+    email = forms.CharField(
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
@@ -93,7 +93,7 @@ class CustomerSignupForm(forms.Form):
         ),
         label = "Email"
     )
-    initial_name = forms.charField(
+    initial_name = forms.CharField(
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
@@ -102,7 +102,7 @@ class CustomerSignupForm(forms.Form):
         ),
         label = "Initial"
     )
-    phone_country = forms.charField(
+    phone_country = forms.CharField(
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
@@ -111,7 +111,7 @@ class CustomerSignupForm(forms.Form):
         ),
         label = "Country prefix"
     )
-    phone_number = forms.charField(
+    phone_number = forms.CharField(
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
