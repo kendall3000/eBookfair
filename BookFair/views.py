@@ -88,7 +88,7 @@ def signup_profile(request):
     # customer_signup_form = CustomerSignupForm()
 
     if request.method == 'POST':
-        form = LoginForm(request.POST)
+        form = LoginForm(data=request.POST)
         if form.is_valid():
             # FIXME: test return message
             username = request.POST["username"]
