@@ -37,7 +37,8 @@
                 {% endif %}
             {% endfor %}
         {% endif %}
-        <form class="row" method="post"">
+        <form class="row" method="post">
+            {% csrf_token %}
             {{ form }}
             <button type="submit" class="btn btn-primary btn-block">Log in</button>
         </form>
