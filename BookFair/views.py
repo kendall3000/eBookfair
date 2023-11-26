@@ -55,31 +55,31 @@ def product(request, prod_id):
 
     return render(request, "BookFair/product.html", {"product": req_product})
 
-def add_to_cart(request, prod_id):
-    product = get_object_or_404(Product, pk=prod_id)
-    user_profile = UserProfile.objects.get(user=request.user)
+# def add_to_cart(request, prod_id):
+#     product = get_object_or_404(Product, pk=prod_id)
+#     user_profile = UserProfile.objects.get(user=request.user)
 
-    # Check if the user has an existing cart
-    if not hasattr(user_profile, 'cart'):
-        cart = Cart.objects.create(user_profile=user_profile)
-        user_profile.cart = cart
-        user_profile.save()
+#     # Check if the user has an existing cart
+#     if not hasattr(user_profile, 'cart'):
+#         cart = Cart.objects.create(user_profile=user_profile)
+#         user_profile.cart = cart
+#         user_profile.save()
 
-    # Add the product to the cart
-    user_profile.cart.products.add(product)
-    messages.success(request, 'Product added to cart!')
-    return redirect('user_profile')
+#     # Add the product to the cart
+#     user_profile.cart.products.add(product)
+#     messages.success(request, 'Product added to cart!')
+#     return redirect('user_profile')
 
 
-def view_cart(request):
-    user_profile = UserProfile.objects.get(user=request.user)
-    cart = user_profile.cart
-    cart_products = cart.products.all()
-    return render(request, 'BookFair/view_cart.html', {'cart_products': cart_products})
+# def view_cart(request):
+#     user_profile = UserProfile.objects.get(user=request.user)
+#     cart = user_profile.cart
+#     cart_products = cart.products.all()
+#     return render(request, 'BookFair/view_cart.html', {'cart_products': cart_products})
 
-def user_profile(request):
-    user = request.user
-    return render(request, 'BookFair/user_profile.html', {'user': user})
+# def user_profile(request):
+#     user = request.user
+#     return render(request, 'BookFair/user_profile.html', {'user': user})
 
 def signup_profile(request):
     # Creating these, to return if form is made nonexistent
