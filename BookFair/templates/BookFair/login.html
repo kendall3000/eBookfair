@@ -11,38 +11,26 @@
 </div>
 
 <div class="container mb-5">
-    <hr>
-    <!-- Display message upon successful/unsuccessful signup here -->
+<hr>
+<!-- Display message upon successful/unsuccessful signup here -->
     {% if messages %}
-    {% for message in messages %}
-        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
-            <div class="alert alert-danger" role="alert">
-                {{ message }}
-                <br>
-                <!-- FIXME: create_account_form error debug only -->
-                {% if create_account_form.errors %}
-                    {% for error in create_account_form.errors %}
-                        <p>{{ error }}</p>
-                    {% endfor %}
-                {% endif %}
-                {% if create_account_form.non_field_errors %}
-                {% for error in create_account_form.errors %}
-                    <p>{{ error }}</p>
-                {% endfor %}
+        {% for message in messages %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                <div class="alert alert-danger" role="alert">
+                    {{ message }}
+                </div>                              
+            {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                <div class="alert alert-success" role="alert">
+                    {{ message }}
+                </div>
+            {% else %}
+                <div class="alert alert-primary" role="alert">
+                    {{ message }}
+                </div>
             {% endif %}
-            </div>                              
-        {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
-            <div class="alert alert-success" role="alert">
-                {{ message }}
-            </div>
-        {% else %}
-            <div class="alert alert-primary" role="alert">
-                {{ message }}
-            </div>
-        {% endif %}
-    {% endfor %}
-{% endif %}
-<form class="row" method="post">
+        {% endfor %}
+    {% endif %}
+<form class="row g-3 mx-5" method="post">
     {% csrf_token %}
     {{ form }}
     <button type="submit" class="btn btn-primary btn-block">Log in</button>
