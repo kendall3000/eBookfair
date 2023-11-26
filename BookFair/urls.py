@@ -1,6 +1,7 @@
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth.views import LoginView
 from . import views
 
 urlpatterns = [
@@ -13,7 +14,7 @@ urlpatterns = [
     # Profile signup page
     path('signup-profile/', views.signup_profile, name='signup_profile'),
     # path('user-profile/', user_profile, name='user_profile'),
-    path('login/', views.login.as_view(), name='login'),
+    path('login/', LoginView.as_view(template_name="BookFair/login.html"), name='login'),
     # Search page
     path('search/', views.search, name='search')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # Warning: this will not work outside of debug mode!
