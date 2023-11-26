@@ -125,6 +125,7 @@ def signup_profile(request):
 
 class signup(FormView):
     template_name = "signup.html"
+    form_class = CustomerSignupForm
 
 # Login
 class login(LoginView):
