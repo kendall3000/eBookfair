@@ -82,8 +82,8 @@ def user_profile(request):
 
 def signup_profile(request):
     # Creating these, to return if form is made nonexistent
-    create_account_form = UserCreationForm()
-    login_account_form = AuthenticationForm()
+    # create_account_form = UserCreationForm()
+    # login_account_form = AuthenticationForm()
 
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
