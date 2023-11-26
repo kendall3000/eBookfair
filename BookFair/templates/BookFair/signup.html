@@ -19,16 +19,16 @@
                     You'll use these details to log into your account.
                 </p>
                 <div class="col-12">
-                    <label for="id_username" class="form-label">{{ customer_signup_form.username.label }}</label>
-                    {{ customer_signup_form.username }}
+                    <label for="id_username" class="form-label">{{ form.username.label }}</label>
+                    {{ form.username }}
                 </div>
                 <div class="col-md-6">
-                    <label for="id_password1" class="form-label">{{ customer_signup_form.password1.label }}</label>
-                    {{ customer_signup_form.password1 }}
+                    <label for="id_password1" class="form-label">{{ form.password1.label }}</label>
+                    {{ form.password1 }}
                 </div>
                 <div class="col-md-6">
-                    <label for="id_password2" class="form-label">{{ customer_signup_form.password2.label }}</label>
-                    {{ customer_signup_form.password2 }}
+                    <label for="id_password2" class="form-label">{{ form.password2.label }}</label>
+                    {{ form.password2 }}
                 </div>
                 <hr>
                 <h3>Personal details</h3>
@@ -36,31 +36,31 @@
                     You'll use these details in your orders.
                 </p>
                 <div class="col-5">
-                    <label for="id_first_name" class="form-label">{{ customer_signup_form.first_name.label }}</label>
-                    {{ customer_signup_form.first_name }}
+                    <label for="id_first_name" class="form-label">{{ form.first_name.label }}</label>
+                    {{ form.first_name }}
                 </div>
                 <div class="col-2">
-                    <label for="id_initial_name" class="form-label">{{ customer_signup_form.initial_name.label }}</label>
-                    {{ customer_signup_form.initial_name }}
+                    <label for="id_initial_name" class="form-label">{{ form.initial_name.label }}</label>
+                    {{ form.initial_name }}
                 </div>
                 <div class="col-5">
-                    <label for="id_last_name" class="form-label">{{ customer_signup_form.last_name.label }}</label>
-                    {{ customer_signup_form.last_name }}
+                    <label for="id_last_name" class="form-label">{{ form.last_name.label }}</label>
+                    {{ form.last_name }}
                 </div>
                 <div class="col-12">
-                    <label for="id_email" class="form-label">{{ customer_signup_form.email.label }}</label>
-                    {{ customer_signup_form.email }}
+                    <label for="id_email" class="form-label">{{ form.email.label }}</label>
+                    {{ form.email }}
                 </div>
                 <div class="col-4">
-                    <label for="id_phone_country" class="form-label">{{ customer_signup_form.phone_country.label }}</label>
+                    <label for="id_phone_country" class="form-label">{{ form.phone_country.label }}</label>
                     <div class="input-group">
                         <span class="input-group-text">+</span>
-                        {{ customer_signup_form.phone_country }}
+                        {{ form.phone_country }}
                     </div>
                 </div>
                 <div class="col-8">
-                    <label for="id_phone_number" class="form-label">{{ customer_signup_form.phone_number.label }}</label>
-                    {{ customer_signup_form.phone_number }}
+                    <label for="id_phone_number" class="form-label">{{ form.phone_number.label }}</label>
+                    {{ form.phone_number }}
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Sign up</button>
             </form>
