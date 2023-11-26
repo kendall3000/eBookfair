@@ -3,6 +3,7 @@ from django.shortcuts import render, HttpResponse, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import LoginView
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
 from django.db.models import Q
@@ -119,6 +120,17 @@ def signup_profile(request):
 
     return render(request, 'BookFair/signup_profile.html', { 'login_account_form': login_account_form, 'customer_signup_form': customer_signup_form})
 # 'create_account_form': create_account_form,
+
+# Login
+def login(LoginView):
+
+    def get_success_url(self):
+        return HttpResponseRedirect("/signup-profile/") # FIXME: change to profile/ once you get that figured out
+
+    def form_invalid(self, form):
+        messages.error(self.request, "Login failed. Please check your username and password.")
+        return self.render(request, 'BookFair/login.html', { 'form': form })
+
 
 # Search
 def search(request):
