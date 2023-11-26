@@ -2,7 +2,6 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from . import views
-from .views import signup_profile#, user_profile
 
 urlpatterns = [
     # Home page
@@ -12,9 +11,9 @@ urlpatterns = [
     # Product page
     path("product/<int:prod_id>/", views.product, name="product"),
     # Profile signup page
-    path('signup-profile/', signup_profile, name='signup_profile'),
+    path('signup-profile/', views.signup_profile, name='signup_profile'),
     # path('user-profile/', user_profile, name='user_profile'),
-    path('login/', login.as_view(), name='login'),
+    path('login/', views.login.as_view(), name='login'),
     # Search page
     path('search/', views.search, name='search')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # Warning: this will not work outside of debug mode!
