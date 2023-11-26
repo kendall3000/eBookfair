@@ -51,6 +51,11 @@
                                             <p>{{ error }}</p>
                                         {% endfor %}
                                     {% endif %}
+                                    {% if create_account_form.non_field_errors %}
+                                    {% for error in create_account_form.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                {% endif %}
                                 </div>                              
                             {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
                                 <div class="alert alert-success" role="alert">
