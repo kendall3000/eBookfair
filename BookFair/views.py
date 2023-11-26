@@ -88,13 +88,13 @@ def signup_profile(request):
     customer_signup_form = CustomerSignupForm()
 
     if request.method == 'POST':
-        create_account_form = UserCreationForm(request.POST)
-        if create_account_form.is_valid():
-            user = create_account_form.save()
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
             login(request, user)
             messages.success(request, 'Account created successfully!')
             # Clear out form
-            create_account_form = UserCreationForm()
+            form = create_account_form = UserCreationForm()
             # Return to original profile page
             return HttpResponseRedirect("/signup-profile/")
         else:
