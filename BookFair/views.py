@@ -85,9 +85,18 @@ def signup_profile(request):
     # Creating these, to return if form is made nonexistent
     # create_account_form = UserCreationForm()
     login_account_form = AuthenticationForm()
-    customer_signup_form = CustomerSignupForm()
+    # customer_signup_form = CustomerSignupForm()
 
     if request.method == 'POST':
+        form = CustomerSignupForm(request.POST)
+        if form.is_valid():
+            # FIXME: test return message
+            messages.success(request, 'Wow! That signup form got into here!')
+            # Clear out form values
+            form = customer_signup_form = CustomerSignupForm()
+            # Return to original profile page
+            return HttpResponseRedirect("/signup-profile/")
+
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
