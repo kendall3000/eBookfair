@@ -87,7 +87,7 @@ def signup_profile(request):
     # login_account_form = LoginForm()
     # customer_signup_form = CustomerSignupForm()
 
-    if request.method == 'POST' & :
+    if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
             # FIXME: test return message
