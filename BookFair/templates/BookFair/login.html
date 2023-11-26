@@ -12,30 +12,34 @@
 
 <div class="container mb-5">
 <hr>
-<!-- Display message upon successful/unsuccessful signup here -->
-    {% if messages %}
-        {% for message in messages %}
-            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
-                <div class="alert alert-danger" role="alert">
-                    {{ message }}
-                </div>                              
-            {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
-                <div class="alert alert-success" role="alert">
-                    {{ message }}
-                </div>
-            {% else %}
-                <div class="alert alert-primary" role="alert">
-                    {{ message }}
-                </div>
-            {% endif %}
-        {% endfor %}
-    {% endif %}
-    <form class="row g-3 mx-5" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit" class="btn btn-primary btn-block">Log in</button>
-    </form>
-    <p>No account? <a href="{% url 'signup_profile' %}">Sign up!</a></p>
+    <div class="row">
+        <!-- Display message upon successful/unsuccessful signup here -->
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ message }}
+                    </div>                              
+                {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                    <div class="alert alert-success" role="alert">
+                        {{ message }}
+                    </div>
+                {% else %}
+                    <div class="alert alert-primary" role="alert">
+                        {{ message }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        <form class="row g-3 mx-5" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit" class="btn btn-primary btn-block">Log in</button>
+        </form>
+    </div>
+    <div class="row">
+        <p>No account? <a href="{% url 'signup_profile' %}">Sign up!</a></p>
+    </div>
 </div>
 
 {% endblock %}
