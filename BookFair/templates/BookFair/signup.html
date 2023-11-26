@@ -42,7 +42,7 @@
         {% endif %}
         <div class="col-md-6 offset-md-3 login-form">
             <h2 class="text-center">Sign up</h2>
-            <form class="row g-3" method="post" action="{% url 'signup_profile' %}">
+            <form class="row g-3" method="post" action="{% url 'signup' %}">
                 {% csrf_token %}
                 <h3>Sign-in details</h3>
                 <p class="my-0">

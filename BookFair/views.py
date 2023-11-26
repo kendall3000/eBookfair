@@ -132,7 +132,7 @@ class signup(FormView):
 
     def post(self, request, *args, **kwargs):
         form = self.get_form()
-        if form.is_valid():
+        if form.is_valid(): 
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
@@ -144,7 +144,7 @@ class login(LoginView):
     template_name = "BookFair/login.html"
 
     def get_success_url(self):
-        return reverse(signup_profile) # FIXME: change to profile/ once you get that figured out
+        return reverse(login) # FIXME: change to profile/ once you get that figured out
 
     def post(self, request, *args, **kwargs):
         form = self.get_form()

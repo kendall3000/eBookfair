@@ -12,7 +12,7 @@ urlpatterns = [
     # Product page
     path("product/<int:prod_id>/", views.product, name="product"),
     # Profile signup page
-    path('signup-profile/', views.signup_profile, name='signup_profile'),
+    #path('signup-profile/', views.signup_profile, name='signup_profile'),
     # path('user-profile/', user_profile, name='user_profile'),
     path('login/', views.login.as_view(template_name="BookFair/login.html"), name='login'),
     path('signup/', views.signup.as_view(), name='signup'),
