@@ -17,14 +17,14 @@
                     <div class="alert alert-danger" role="alert">
                         {{ message }}
                         <br>
-                        <!-- FIXME: create_account_form error debug only -->
-                        {% if create_account_form.errors %}
-                            {% for error in create_account_form.errors %}
+                        <!-- FIXME: form error debug only -->
+                        {% if form.errors %}
+                            {% for error in form.errors %}
                                 <p>{{ error }}</p>
                             {% endfor %}
                         {% endif %}
-                        {% if create_account_form.non_field_errors %}
-                        {% for error in create_account_form.errors %}
+                        {% if form.non_field_errors %}
+                        {% for error in form.errors %}
                             <p>{{ error }}</p>
                         {% endfor %}
                     {% endif %}
