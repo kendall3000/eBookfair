@@ -56,7 +56,7 @@ class CustomerSignupForm(forms.Form):
         ),
         label = "Username"
     )
-    password = forms.CharField(
+    password1 = forms.CharField(
         widget=forms.PasswordInput(
             attrs={
                 'class': 'form-control',
@@ -64,6 +64,15 @@ class CustomerSignupForm(forms.Form):
             }
         ),
         label = "Password"
+    )
+    password2 = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                'class': 'form-control',
+                'type': 'password'
+            }
+        ),
+        label = "Retype password"
     )
     first_name = forms.CharField(
         widget=forms.TextInput(
