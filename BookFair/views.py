@@ -136,6 +136,8 @@ class signup(FormView):
     def post(self, request, *args, **kwargs):
         form = self.get_form()
         if form.is_valid():
+            # TODO: check that password is the same -- form validation does not help here
+
             messages.success(request, "Successfully signed up!")
             return self.form_valid(form)
         else:
