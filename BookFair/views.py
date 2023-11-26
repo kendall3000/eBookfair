@@ -82,11 +82,11 @@ def user_profile(request):
 
 def signup_profile(request):
     # Creating these, to return if form is made nonexistent
-    create_account_form = CustomUserCreationForm()
+    create_account_form = UserCreationForm()
     login_account_form = AuthenticationForm()
 
     if request.method == 'POST':
-        form = CustomUserCreationForm(request.POST)
+        form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
@@ -95,7 +95,7 @@ def signup_profile(request):
         else:
             messages.error(request, 'Error creating your account. Please check the provided information.')
     else:
-        create_account_form = CustomUserCreationForm()
+        create_account_form = UserCreationForm()
         login_account_form = AuthenticationForm()
     return render(request, 'BookFair/signup_profile.html', {'create_account_form': create_account_form, 'login_account_form': login_account_form})
 
