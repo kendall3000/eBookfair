@@ -8,7 +8,7 @@ from django.contrib import messages
 from django.db.models import Q
 
 # Model packages
-from BookFair.models import Category, Product,  Cart, UserProfile
+from BookFair.models import Category, Product#,  Cart, UserProfile
 # Form packages
 from BookFair.forms import SearchBoxNav, SearchBoxFull, CustomUserCreationForm#, LoginForm
 # Python packages
