@@ -97,11 +97,12 @@ def signup_profile(request):
             if user is not None:
                 login(request, user)
                 messages.success(request, "You've logged in!")
+                form = login_account_form = LoginForm()
                 return HttpResponseRedirect("/signup-profile/")
             else:
                 messages.error(request, "Wrong credentials. Please check your username and password.")
-            # Clear out form values
-            form = login_account_form = LoginForm()
+                # Clear out form values
+                form = login_account_form = LoginForm()
 
         # form = UserCreationForm(request.POST)
         # if form.is_valid():
