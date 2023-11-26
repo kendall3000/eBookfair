@@ -86,8 +86,8 @@ def signup_profile(request):
     # login_account_form = AuthenticationForm()
 
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
+        create_account_form = UserCreationForm(request.POST)
+        if create_account_form.is_valid():
             user = form.save()
             login(request, user)
             messages.success(request, 'Account created successfully!')
