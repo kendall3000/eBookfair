@@ -95,7 +95,7 @@ def signup_profile(request):
             # Clear out form
             create_account_form = UserCreationForm()
             # Return to original profile page
-            return HttpResponseRedirect("/signup_profile.html")
+            return HttpResponseRedirect("/signup_profile")
         else:
             messages.error(request, 'Error creating your account. Please check the provided information.')
     else:
