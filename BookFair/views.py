@@ -10,7 +10,7 @@ from django.db.models import Q
 # Model packages
 from BookFair.models import Category, Product#,  Cart, UserProfile
 # Form packages
-from BookFair.forms import SearchBoxNav, SearchBoxFull, CustomerSignupForm #, LoginForm
+from BookFair.forms import SearchBoxNav, SearchBoxFull, CustomerSignupForm, LoginForm
 # Python packages
 import random
 from functools import reduce
@@ -84,7 +84,7 @@ def product(request, prod_id):
 def signup_profile(request):
     # Creating these, to return if form is made nonexistent
     # create_account_form = UserCreationForm()
-    login_account_form = AuthenticationForm()
+    # login_account_form = LoginForm()
     # customer_signup_form = CustomerSignupForm()
 
     if request.method == 'POST':
@@ -97,22 +97,23 @@ def signup_profile(request):
             # Return to original profile page
             return HttpResponseRedirect("/signup-profile/")
 
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            messages.success(request, 'Account created successfully!')
-            # Clear out form
-            form = create_account_form = UserCreationForm()
-            # Return to original profile page
-            return HttpResponseRedirect("/signup-profile/")
+        # form = UserCreationForm(request.POST)
+        # if form.is_valid():
+        #     user = form.save()
+        #     login(request, user)
+        #     messages.success(request, 'Account created successfully!')
+        #     # Clear out form
+        #     form = create_account_form = UserCreationForm()
+        #     # Return to original profile page
+        #     return HttpResponseRedirect("/signup-profile/")
         else:
             messages.error(request, 'Error creating your account. Please check the provided information.')
     else:
-        create_account_form = UserCreationForm()
-        login_account_form = AuthenticationForm()
+        # create_account_form = UserCreationForm()
+        login_account_form = LoginForm()
         customer_signup_form = CustomerSignupForm()
-    return render(request, 'BookFair/signup_profile.html', {'create_account_form': create_account_form, 'login_account_form': login_account_form, 'customer_signup_form': customer_signup_form})
+    return render(request, 'BookFair/signup_profile.html', { 'login_account_form': login_account_form, 'customer_signup_form': customer_signup_form})
+# 'create_account_form': create_account_form,
 
 # Search
 def search(request):

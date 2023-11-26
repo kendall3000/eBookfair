@@ -48,6 +48,8 @@ class SearchBoxFull(forms.Form):
     )
 
 class CustomerSignupForm(forms.Form):
+    prefix = "signup"
+
     username = forms.CharField(
         widget=forms.TextInput(
             attrs={
@@ -135,8 +137,6 @@ class CustomerSignupForm(forms.Form):
     )
 
 
-# class LoginForm(AuthenticationForm):
+class LoginForm(AuthenticationForm):
     
-#     class Meta:
-#         model = User
-#         fields = AuthenticationForm.Meta.fields
+    prefix = "login"
