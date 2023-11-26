@@ -87,8 +87,8 @@ def signup_profile(request):
     # login_account_form = LoginForm()
     # customer_signup_form = CustomerSignupForm()
 
-    if request.method == 'POST':
-        form = CustomerSignupForm(request.POST)
+    if request.method == 'POST' & :
+        form = LoginForm(request.POST)
         if form.is_valid():
             # FIXME: test return message
             username = request.POST["username"]
@@ -101,7 +101,7 @@ def signup_profile(request):
             else:
                 messages.error(request, "Wrong credentials. Please check your username and password.")
             # Clear out form values
-            form = customer_signup_form = CustomerSignupForm()
+            form = login_account_form = CustomerSignupForm()
 
         # form = UserCreationForm(request.POST)
         # if form.is_valid():
