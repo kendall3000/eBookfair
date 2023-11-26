@@ -131,6 +131,18 @@ class login(LoginView):
     def get_success_url(self):
         return reverse(signup_profile) # FIXME: change to profile/ once you get that figured out
 
+
+    def post(self, request, *args, **kwargs):
+        """
+        Handle POST requests: instantiate a form instance with the passed
+        POST variables and then check if it's valid.
+        """
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            messages.error(request, "Invalid login. Check your username and password.")
+            return self.form_invalid(form)
     # def get(self, request, *args, **kwargs):
     #     form = self.form_class()
     #     return render(request, self.template_name, {"form": form})
