@@ -122,6 +122,9 @@ def signup_profile(request):
     return render(request, 'BookFair/signup_profile.html', { 'login_account_form': login_account_form, 'customer_signup_form': customer_signup_form})
 # 'create_account_form': create_account_form,
 
+class signup(FormView):
+    template_name = "signup.html"
+
 # Login
 class login(LoginView):
 
