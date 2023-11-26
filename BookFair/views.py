@@ -8,6 +8,7 @@ from django.contrib.auth.views import LoginView
 from django.contrib import messages
 from django.db.models import Q
 from django.urls import reverse
+from django.views.generic.edit import FormView
 
 # Model packages
 from BookFair.models import Category, Product#,  Cart, UserProfile
