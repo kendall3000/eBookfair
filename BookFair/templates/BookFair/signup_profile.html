@@ -94,10 +94,15 @@
         <div class="tab-pane fade" id="customer-signup-tab-pane" role="tabpanel" aria-labelledby="customer-signup-tab" tabindex="0">
             <div class="row">
                 <div class="col-md-6 offset-md-3 login-form">
-                    <h2 class="text-center">Log in</h2>
+                    <h2 class="text-center">Sign up</h2>
                     <form class="row g-3" method="post" action="{% url 'signup_profile' %}">
                         {% csrf_token %}
+                        <h3>Sign-in details</h3>
+                        <p class="my-0">
+                            You'll use these details to log into your account.
+                        </p>
                         <div class="col-12">
+                            <label for="{{ field.auto_id }}" class="form-label">{{ customer_signup_form.username.label }}</label>
                             {{ customer_signup_form.username }}
                         </div>
                         <div class="col-md-6">
@@ -106,6 +111,10 @@
                         <div class="col-md-6">
                             {{ customer_signup_form.password2 }}
                         </div>
+                        <hr>
+                        <p class="my-0">
+                            You'll use these details in your orders.
+                        </p>
                         <div class="col-5">
                             {{ customer_signup_form.first_name }}
                         </div>
