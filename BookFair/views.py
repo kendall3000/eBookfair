@@ -89,8 +89,6 @@ def signup_profile(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            # Create a user profile
-            UserProfile.objects.create(user=user)
             login(request, user)
             messages.success(request, 'Account created successfully!')
             return redirect('user_profile')
