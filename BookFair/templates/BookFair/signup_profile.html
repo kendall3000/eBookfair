@@ -135,7 +135,10 @@
                         </div>
                         <div class="col-4">
                             <label for="id_phone_country" class="form-label">{{ customer_signup_form.phone_country.label }}</label>
-                            {{ customer_signup_form.phone_country }}
+                            <div class="input-group">
+                                <span class="input-group-text">+</span>
+                                {{ customer_signup_form.phone_country }}
+                            </div>
                         </div>
                         <div class="col-8">
                             <label for="id_phone_number" class="form-label">{{ customer_signup_form.phone_number.label }}</label>
