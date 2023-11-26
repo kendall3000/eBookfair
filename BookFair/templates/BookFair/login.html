@@ -30,11 +30,12 @@
             {% endif %}
         {% endfor %}
     {% endif %}
-<form class="row g-3 mx-5" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <button type="submit" class="btn btn-primary btn-block">Log in</button>
-</form>
+    <form class="row g-3 mx-5" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="btn btn-primary btn-block">Log in</button>
+    </form>
+    <p>No account? <a href="{% url 'signup_profile' %}">Sign up!</a></p>
 </div>
 
 {% endblock %}
