@@ -129,7 +129,7 @@ class login(LoginView):
 
     def form_invalid(self, form):
         messages.error(self.request, "Login failed. Please check your username and password.")
-        return self.render(request, 'BookFair/login.html', { 'form': form })
+        return render(request, 'BookFair/login.html', { 'form': form })
 
 
 # Search
