@@ -16,18 +16,6 @@
                 {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
                     <div class="alert alert-danger" role="alert">
                         {{ message }}
-                        <br>
-                        <!-- FIXME: form error debug only -->
-                        {% if form.errors %}
-                            {% for error in form.errors %}
-                                <p>{{ error }}</p>
-                            {% endfor %}
-                        {% endif %}
-                        {% if form.non_field_errors %}
-                        {% for error in form.errors %}
-                            <p>{{ error }}</p>
-                        {% endfor %}
-                    {% endif %}
                     </div>                              
                 {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
                     <div class="alert alert-success" role="alert">
@@ -38,13 +26,6 @@
                         {{ message }}
                     </div>
                 {% endif %}
-            {% endfor %}
-        {% endif %}
-        {% if form.errors %}
-            {% for field in form %}
-                {% for error in field.errors %}
-                        {{field.label}}: {{ error|escape }}
-                {% endfor %}
             {% endfor %}
         {% endif %}
         <div class="col-md-6 offset-md-3 login-form">
