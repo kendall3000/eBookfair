@@ -124,24 +124,27 @@ def signup_profile(request):
 # Login
 class login(LoginView):
 
-    form_class = AuthenticationForm
+    form_class = LoginForm
     template_name = "BookFair/login.html"
 
-    def get_success_url(self):
-        return HttpResponseRedirect("/signup-profile/") # FIXME: change to profile/ once you get that figured out
+    # def get_success_url(self):
+    #     return "/signup-profile/" # FIXME: change to profile/ once you get that figured out
 
-    def get(self, request, *args, **kwargs):
-        form = self.form_class()
-        return render(request, self.template_name, {"form": form})
+    # def get(self, request, *args, **kwargs):
+    #     form = self.form_class()
+    #     return render(request, self.template_name, {"form": form})
 
-    def post(self, request, *args, **kwargs):
-        form = self.form_class(data=request.POST)
-        if form.is_valid():
-            messages.success(request, "Form submitted successfully.")
-        else:
-            messages.error(request, "Form invalid.")
+    # def post(self, request, *args, **kwargs):
+    #     form = self.form_class(data=request.POST)
+    #     # Note: the form is not valid if the user submits wrong sign-in details.
+    #     #       an invalid form =/= there's something wrong
+    #     if form.is_valid():
+    #         messages.success(request, "Form submitted successfully.")
+
+    #     else:
+    #         messages.error(request, "Invalid login. Check your username and password.")
         
-        return render(request, self.template_name, { 'form': form })
+    #     return render(request, self.template_name, { 'form': form })
 
 
 # Search
