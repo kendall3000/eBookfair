@@ -140,3 +140,7 @@ class CustomerSignupForm(forms.Form):
 class LoginForm(AuthenticationForm):
     
     prefix = "login"
+
+    class Meta(AuthenticationForm.Meta):
+        model = User
+        fields = AuthenticationForm.Meta.fields
