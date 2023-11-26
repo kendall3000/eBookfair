@@ -16,6 +16,36 @@
 
 {% block content %}
 <div class="container signup-profile-section">
+        <!-- Display message upon successful/unsuccessful signup here -->
+        {% if messages %}
+        {% for message in messages %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                <div class="alert alert-danger" role="alert">
+                    {{ message }}
+                    <br>
+                    <!-- FIXME: create_account_form error debug only -->
+                    {% if create_account_form.errors %}
+                        {% for error in create_account_form.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
+                    {% if create_account_form.non_field_errors %}
+                    {% for error in create_account_form.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                {% endif %}
+                </div>                              
+            {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                <div class="alert alert-success" role="alert">
+                    {{ message }}
+                </div>
+            {% else %}
+                <div class="alert alert-primary" role="alert">
+                    {{ message }}
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
     {% if user.is_authenticated %}
     <div class="row">
         <div class="col-md-6 offset-md-3 profile-info">
@@ -38,36 +68,6 @@
             <div class="row">
                 <div class="col-md-6 offset-md-3 signup-form">
                     <h2 class="text-center">Sign Up</h2>
-                    <!-- Display message upon successful/unsuccessful signup here -->
-                    {% if messages %}
-                        {% for message in messages %}
-                            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
-                                <div class="alert alert-danger" role="alert">
-                                    {{ message }}
-                                    <br>
-                                    <!-- FIXME: create_account_form error debug only -->
-                                    {% if create_account_form.errors %}
-                                        {% for error in create_account_form.errors %}
-                                            <p>{{ error }}</p>
-                                        {% endfor %}
-                                    {% endif %}
-                                    {% if create_account_form.non_field_errors %}
-                                    {% for error in create_account_form.errors %}
-                                        <p>{{ error }}</p>
-                                    {% endfor %}
-                                {% endif %}
-                                </div>                              
-                            {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
-                                <div class="alert alert-success" role="alert">
-                                    {{ message }}
-                                </div>
-                            {% else %}
-                                <div class="alert alert-primary" role="alert">
-                                    {{ message }}
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    {% endif %}
                     <form method="post" action="{% url 'signup_profile' %}">
                         {% csrf_token %}
                         {{ create_account_form.as_p }}
