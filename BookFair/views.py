@@ -101,8 +101,6 @@ def signup_profile(request):
                 return HttpResponseRedirect("/signup-profile/")
             else:
                 messages.error(request, "Wrong credentials. Please check your username and password.")
-        # Clear out form values
-        login_account_form = LoginForm()
 
         # form = UserCreationForm(request.POST)
         # if form.is_valid():
@@ -115,10 +113,10 @@ def signup_profile(request):
         #     return HttpResponseRedirect("/signup-profile/")
         else:
             messages.error(request, 'Error creating your account. Please check the provided information.')
-    else:
-        # create_account_form = UserCreationForm()
-        login_account_form = LoginForm()
-        customer_signup_form = CustomerSignupForm()
+    # create_account_form = UserCreationForm()
+    login_account_form = LoginForm()
+    customer_signup_form = CustomerSignupForm()
+
     return render(request, 'BookFair/signup_profile.html', { 'login_account_form': login_account_form, 'customer_signup_form': customer_signup_form})
 # 'create_account_form': create_account_form,
 
