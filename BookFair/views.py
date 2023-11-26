@@ -94,7 +94,7 @@ def signup_profile(request):
             # Clear out form
             create_account_form = UserCreationForm()
             # Return to original profile page
-            return request(request, 'BookFair/signup_profile.html', {'create_account_form': create_account_form, 'login_account_form': login_account_form})
+            return HttpResponseRedirect("/signup_profile.html")
         else:
             messages.error(request, 'Error creating your account. Please check the provided information.')
     else:
