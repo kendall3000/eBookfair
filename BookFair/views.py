@@ -101,8 +101,8 @@ def signup_profile(request):
                 return HttpResponseRedirect("/signup-profile/")
             else:
                 messages.error(request, "Wrong credentials. Please check your username and password.")
-                # Clear out form values
-                form = login_account_form = LoginForm()
+        # Clear out form values
+        login_account_form = LoginForm()
 
         # form = UserCreationForm(request.POST)
         # if form.is_valid():
