@@ -50,6 +50,7 @@ class CustomerSignupForm(ModelForm):
 
     class Meta:
         model = Customer
+        exclude = ["cus_id"]
 
 # class LoginForm(AuthenticationForm):
     
