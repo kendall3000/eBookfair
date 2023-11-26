@@ -127,9 +127,15 @@ class login(LoginView):
     def get_success_url(self):
         return HttpResponseRedirect("/signup-profile/") # FIXME: change to profile/ once you get that figured out
 
-    def form_invalid(self, form):
-        messages.error(self.request, "Login failed. Please check your username and password.")
-        return render(request, 'BookFair/login.html', { 'form': form })
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            messages.success(request, "Form submitted successfully.")
+            
+        else:
+            messages.error(request, "Form invalid.")
+        
+        return render(request, self.template_name, { 'form': form })
 
 
 # Search
