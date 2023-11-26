@@ -46,11 +46,81 @@ class SearchBoxFull(forms.Form):
         label = "Sort by:"
     )
 
-class CustomerSignupForm(ModelForm):
+class CustomerSignupForm(forms.Form):
+    username = forms.charField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'type': 'text'
+            }
+        ),
+        label = "Username"
+    )
+    password = forms.charField(
+        widget=forms.PasswordInput(
+            attrs={
+                'class': 'form-control',
+                'type': 'password'
+            }
+        ),
+        label = "Password"
+    )
+    first_name = forms.charField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'type': 'text'
+            }
+        ),
+        label = "First name"
+    )
+    last_name = forms.charField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'type': 'text'
+            }
+        ),
+        label = "Last name"
+    )
+    email = forms.charField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'type': 'email',
+                'placeholder': 'myaddress@example.com'
+            }
+        ),
+        label = "Email"
+    )
+    initial_name = forms.charField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'type': 'text',
+            }
+        ),
+        label = "Initial"
+    )
+    phone_country = forms.charField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'type': 'text',
+            }
+        ),
+        label = "Country prefix"
+    )
+    phone_number = forms.charField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'type': 'text',
+            }
+        ),
+        label = "Phone number"
+    )
 
-    class Meta:
-        model = Customer
-        exclude = ["cus_id"]
 
 # class LoginForm(AuthenticationForm):
     
