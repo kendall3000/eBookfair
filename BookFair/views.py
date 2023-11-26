@@ -10,7 +10,7 @@ from django.db.models import Q
 # Model packages
 from BookFair.models import Category, Product#,  Cart, UserProfile
 # Form packages
-from BookFair.forms import SearchBoxNav, SearchBoxFull, CustomUserCreationForm, CustomerSignupForm #, LoginForm
+from BookFair.forms import SearchBoxNav, SearchBoxFull, CustomerSignupForm #, LoginForm
 # Python packages
 import random
 from functools import reduce
