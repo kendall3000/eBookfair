@@ -10,7 +10,7 @@ from django.db.models import Q
 # Model packages
 from BookFair.models import Category, Product#,  Cart, UserProfile
 # Form packages
-from BookFair.forms import SearchBoxNav, SearchBoxFull, CustomUserCreationForm#, LoginForm
+from BookFair.forms import SearchBoxNav, SearchBoxFull, CustomUserCreationForm, CustomerSignupForm #, LoginForm
 # Python packages
 import random
 from functools import reduce
@@ -85,6 +85,7 @@ def signup_profile(request):
     # Creating these, to return if form is made nonexistent
     # create_account_form = UserCreationForm()
     login_account_form = AuthenticationForm()
+    customer_signup_form = CustomerSignupForm()
 
     if request.method == 'POST':
         create_account_form = UserCreationForm(request.POST)
@@ -101,7 +102,8 @@ def signup_profile(request):
     else:
         create_account_form = UserCreationForm()
         login_account_form = AuthenticationForm()
-    return render(request, 'BookFair/signup_profile.html', {'create_account_form': create_account_form, 'login_account_form': login_account_form})
+        customer_signup_form = CustomerSignupForm()
+    return render(request, 'BookFair/signup_profile.html', {'create_account_form': create_account_form, 'login_account_form': login_account_form, 'customer_signup_form': customer_signup_form})
 
 # Search
 def search(request):
