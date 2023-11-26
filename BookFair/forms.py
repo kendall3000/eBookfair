@@ -45,7 +45,7 @@ class SearchBoxFull(forms.Form):
         label = "Sort by:"
     )
 
-class CustomerSignupForm(forms.Form):
+class CustomerSignupForm(ModelForm):
 
     class Meta:
         model = Customer
