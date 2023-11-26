@@ -123,12 +123,15 @@ def signup_profile(request):
     return render(request, 'BookFair/signup_profile.html', { 'login_account_form': login_account_form, 'customer_signup_form': customer_signup_form})
 # 'create_account_form': create_account_form,
 
+def profile(request):
+    return render(request, 'BookFair/profile.html')
+
 class signup(FormView):
     template_name = "BookFair/signup.html"
     form_class = CustomerSignupForm
 
     def get_success_url(self):
-        return reverse(signup) # FIXME: change to profile when that page is made standalone
+        return reverse(profile) # FIXME: change to profile when that page is made standalone
 
     def post(self, request, *args, **kwargs):
         form = self.get_form()
@@ -144,7 +147,7 @@ class login(LoginView):
     template_name = "BookFair/login.html"
 
     def get_success_url(self):
-        return reverse(login) # FIXME: change to profile/ once you get that figured out
+        return reverse(profile) # FIXME: change to profile/ once you get that figured out
 
     def post(self, request, *args, **kwargs):
         form = self.get_form()
