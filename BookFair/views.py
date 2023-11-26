@@ -91,11 +91,17 @@ def signup_profile(request):
         form = CustomerSignupForm(request.POST)
         if form.is_valid():
             # FIXME: test return message
-            messages.success(request, 'Wow! That signup form got into here!')
+            username = request.POST["username"]
+            password = request.POST["password"]
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                messages.success(request, "You've logged in!")
+                return HttpResponseRedirect("/signup-profile/")
+            else:
+                messages.error(request, "Wrong credentials. Please check your username and password.")
             # Clear out form values
             form = customer_signup_form = CustomerSignupForm()
-            # Return to original profile page
-            return HttpResponseRedirect("/signup-profile/")
 
         # form = UserCreationForm(request.POST)
         # if form.is_valid():
