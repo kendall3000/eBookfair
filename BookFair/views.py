@@ -128,7 +128,7 @@ class signup(FormView):
     form_class = CustomerSignupForm
 
     def get_success_url(self):
-        return reverse(signup_profile) # FIXME: change to profile when that page is made standalone
+        return reverse(signup) # FIXME: change to profile when that page is made standalone
 
     def post(self, request, *args, **kwargs):
         form = self.get_form()
