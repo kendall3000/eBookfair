@@ -49,21 +49,21 @@ class Discount(models.Model):
 #        managed = False
         db_table = 'DISCOUNT'
 
-class Invoice(models.Model):
-    inv_id = models.PositiveIntegerField(primary_key=True)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)  # If a customer is deleted, don't remove their associated transactions, because it could mess with bookkeeping.
-                                                                    # NOTE: This is perfectly fine *if we do not reuse customer IDs*.
-    inv_date = models.DateTimeField()
-    inv_address_line1 = models.CharField(max_length=128)
-    inv_address_line2 = models.CharField(max_length=128, blank=True, null=True)
-    inv_address_city = models.CharField(max_length=128)
-    inv_address_region = models.CharField(max_length=128)
-    inv_address_country = models.CharField(max_length=128)
-    inv_address_postalcode = models.CharField(max_length=16)
+# class Invoice(models.Model):
+#     inv_id = models.PositiveIntegerField(primary_key=True)
+#     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)  # If a customer is deleted, don't remove their associated transactions, because it could mess with bookkeeping.
+#                                                                     # NOTE: This is perfectly fine *if we do not reuse customer IDs*.
+#     inv_date = models.DateTimeField()
+#     inv_address_line1 = models.CharField(max_length=128)
+#     inv_address_line2 = models.CharField(max_length=128, blank=True, null=True)
+#     inv_address_city = models.CharField(max_length=128)
+#     inv_address_region = models.CharField(max_length=128)
+#     inv_address_country = models.CharField(max_length=128)
+#     inv_address_postalcode = models.CharField(max_length=16)
 
-    class Meta:
-#        managed = False
-        db_table = 'INVOICE'
+#     class Meta:
+# #        managed = False
+#         db_table = 'INVOICE'
 
 
 class Line(models.Model):
