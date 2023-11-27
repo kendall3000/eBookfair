@@ -83,7 +83,12 @@ def product(request, prod_id):
 #     return render(request, 'BookFair/view_cart.html', {'cart_products': cart_products})
 
 def profile(request):
-    return render(request, 'BookFair/profile.html')
+    # Get customer that corresponds to signed-in user
+    cur_user = request.user
+    if cur_user is not None:
+        cur_customer = Customer.objects.get(user=user)
+
+    return render(request, 'BookFair/profile.html', {'customer': cur_customer})
 
 class SignupView(FormView):
     template_name = "BookFair/signup.html"
