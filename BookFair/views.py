@@ -168,12 +168,8 @@ class signup(FormView):
         return user
 
     def form_valid(self, form):
-        try:
-            user = create_user_transact(self, form)
-            login(self.request, user)
-        except:
-            messages.error(self.request, "Something went wrong.")
-            return super().form_invalid(form)
+        user = create_user_transact(self, form)
+        login(self.request, user)
 
         return super().form_valid(form)
 
