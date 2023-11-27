@@ -24,8 +24,8 @@ class Category(models.Model):
 
 
 class Customer(models.Model):
-    # Making user the actual primary key
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, primary_key=True)
+    cus_id = models.AutoField()
     cus_lname = models.CharField(max_length=45)
     cus_fname = models.CharField(max_length=45)
     cus_initial = models.CharField(max_length=45, blank=True, null=True)
