@@ -165,6 +165,8 @@ class signup(FormView):
             cus_phone_country = form.cleaned_data['phone_country']
         ).save()
 
+        return super().form_valid(form)
+
 # Login
 class login(LoginView):
 
