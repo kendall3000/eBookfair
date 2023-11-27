@@ -19,4 +19,4 @@ class InvoiceAdmin(admin.ModelAdmin):
 
 @admin.register(m.Customer)
 class CustomerAdmin(admin.ModelAdmin):
-    list_display = ["cus_id", "cus_email"]
+    list_display = ["cus_email"]
