@@ -128,7 +128,7 @@ def signup_profile(request):
 def profile(request):
     return render(request, 'BookFair/profile.html')
 
-class signup(FormView):
+class SignupView(FormView):
     template_name = "BookFair/signup.html"
     form_class = CustomerSignupForm
 

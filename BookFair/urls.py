@@ -15,7 +15,7 @@ urlpatterns = [
     #path('signup-profile/', views.signup_profile, name='signup_profile'),
     # path('user-profile/', user_profile, name='user_profile'),
     path('login/', views.login.as_view(template_name="BookFair/login.html"), name='login'),
-    path('signup/', views.signup.as_view(), name='signup'),
+    path('signup/', views.SignupView.as_view(), name='signup'),
     path('profile/', views.profile, name='profile'),
     # Search page
     path('search/', views.search, name='search')
