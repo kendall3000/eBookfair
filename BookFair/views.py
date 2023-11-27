@@ -180,7 +180,7 @@ class SignupView(FormView):
         return super().form_valid(form)
 
 # Login
-class login(LoginView):
+class CustomerLoginView(LoginView):
 
     form_class = LoginForm
     template_name = "BookFair/login.html"
