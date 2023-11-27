@@ -168,7 +168,7 @@ class signup(FormView):
         return user
 
     def form_valid(self, form):
-        user = self.create_user_transact(self, form)
+        user = self.create_user_transact(form)
         login(self.request, user)
 
         return super().form_valid(form)
