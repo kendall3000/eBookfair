@@ -66,17 +66,17 @@ class Discount(models.Model):
 #         db_table = 'INVOICE'
 
 
-class Line(models.Model):
-    line_id = models.PositiveIntegerField(primary_key=True)
-    line_total = models.DecimalField(max_digits=8, decimal_places=2, db_comment='The monetary amount that the items in this line were sold for, after a discount was applied.')
-    line_quantity = models.PositiveIntegerField()
-    inv = models.ForeignKey(Invoice, on_delete=models.CASCADE) # Delete this line object if its invoice is deleted, too.
-    prod = models.ForeignKey('Product', on_delete=models.DO_NOTHING) # If the product is removed from the PRODUCT table, don't screw with the recorded ID. This is fine *if we do not reuse product IDs*.
-    disc = models.ForeignKey(Discount, on_delete=models.DO_NOTHING, blank=True, null=True) # If discount is removed, don't do anything to screw with the recorded discount.
+# class Line(models.Model):
+#     line_id = models.PositiveIntegerField(primary_key=True)
+#     line_total = models.DecimalField(max_digits=8, decimal_places=2, db_comment='The monetary amount that the items in this line were sold for, after a discount was applied.')
+#     line_quantity = models.PositiveIntegerField()
+#     inv = models.ForeignKey(Invoice, on_delete=models.CASCADE) # Delete this line object if its invoice is deleted, too.
+#     prod = models.ForeignKey('Product', on_delete=models.DO_NOTHING) # If the product is removed from the PRODUCT table, don't screw with the recorded ID. This is fine *if we do not reuse product IDs*.
+#     disc = models.ForeignKey(Discount, on_delete=models.DO_NOTHING, blank=True, null=True) # If discount is removed, don't do anything to screw with the recorded discount.
 
-    class Meta:
-#        managed = False
-        db_table = 'LINE'
+#     class Meta:
+# #        managed = False
+#         db_table = 'LINE'
 
 
 class Product(models.Model):
