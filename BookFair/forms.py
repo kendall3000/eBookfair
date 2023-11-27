@@ -86,7 +86,8 @@ class CustomerSignupForm(forms.Form):
                 'type': 'text'
             }
         ),
-        label = "First name"
+        label = "First name",
+        max_length = 45
     )
     last_name = forms.CharField(
         widget=forms.TextInput(
@@ -95,7 +96,8 @@ class CustomerSignupForm(forms.Form):
                 'type': 'text'
             }
         ),
-        label = "Last name"
+        label = "Last name",
+        max_length = 45
     )
     email = forms.CharField(
         widget=forms.TextInput(
@@ -106,7 +108,8 @@ class CustomerSignupForm(forms.Form):
             }
         ),
         label = "Email",
-        validators = [validate_email]
+        validators = [validate_email],
+        max_length = 128
     )
     initial_name = forms.CharField(
         widget=forms.TextInput(
@@ -115,7 +118,8 @@ class CustomerSignupForm(forms.Form):
                 'type': 'text',
             }
         ),
-        label = "Initial"
+        label = "Initial",
+        max_length = 1
     )
     phone_country = forms.CharField(
         widget=forms.TextInput(
@@ -124,7 +128,8 @@ class CustomerSignupForm(forms.Form):
                 'type': 'text',
             }
         ),
-        label = "Country prefix"
+        label = "Country prefix",
+        max_length = 3
     )
     phone_number = forms.CharField(
         widget=forms.TextInput(
@@ -133,7 +138,8 @@ class CustomerSignupForm(forms.Form):
                 'type': 'text',
             }
         ),
-        label = "Phone number"
+        label = "Phone number",
+        max_length = 12
     )
 
 

@@ -5,13 +5,14 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.views import LoginView
+from django.contrib.auth.models import User
 from django.contrib import messages
 from django.db.models import Q
 from django.urls import reverse
 from django.views.generic.edit import FormView
 
 # Model packages
-from BookFair.models import Category, Product#,  Cart, UserProfile
+from BookFair.models import Customer, Category, Product#,  Cart, UserProfile
 # Form packages
 from BookFair.forms import SearchBoxNav, SearchBoxFull, CustomerSignupForm, LoginForm
 # Python packages
@@ -139,13 +140,29 @@ class signup(FormView):
             # TODO: check that password is the same -- form validation does not help here
             if form.cleaned_data['password1'] == form.cleaned_data['password2']:
                 messages.success(request, "Successfully signed up!")
+                return self.form_valid(form)
             else:
                 messages.error(request, "Invalid password.")
                 return self.form_invalid(form)
-            
-            return self.form_valid(form)
 
         return self.form_invalid(form)
+
+    @transaction.atomic
+    def form_valid(self, form):
+        user = User.objects.create_user(
+            form.cleaned_data['username'],
+            form.cleaned_data['email'],
+            form.cleaned_data['password1']
+        )
+        Customer.objects.create(
+            user = user,
+            cus_lname = form.cleaned_data['last_name'],
+            cus_fname = form.cleaned_data['first_name'],
+            cus_initial = form.cleaned_data['initial_name'],
+            cus_email = form.cleaned_data['email'],
+            cus_phone = form.cleaned_data['phone_number'],
+            cus_phone_country = form.cleaned_data['phone_country']
+        ).save()
 
 # Login
 class login(LoginView):
