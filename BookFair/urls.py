@@ -20,6 +20,8 @@ urlpatterns = [
     path('signup/', views.SignupView.as_view(), name='signup'),
     # Profile details
     path('profile/', views.profile, name='profile'),
+    # Log out page
+    path('logout/', views.LogoutView, name='logout'),
     # Search page
     path('search/', views.search, name='search')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # Warning: this will not work outside of debug mode!

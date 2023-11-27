@@ -34,7 +34,7 @@
             <div class="card-body">
                 <h3 class="card-title">{{ user.username }}</h3>
                 <h4 class="card-subtitle">{{ user.email }}</h4>
-                <button type="button" class="mt-3 btn btn-outline-danger">Sign out</button>
+                <button href="{% url 'logout' %}" type="button" class="mt-3 btn btn-outline-danger">Sign out</button>
             </div>
             {% if customer %}
             <ul class="list-group list-group-flush">

@@ -3,7 +3,7 @@ from django.shortcuts import render, HttpResponse, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -92,6 +92,12 @@ def profile(request):
         cur_customer = Customer.objects.get(user=cur_user)
 
     return render(request, 'BookFair/profile.html', {'customer': cur_customer})
+
+def LogoutView(request):
+    # Simple logout page
+    logout(request)
+
+    return render(request, 'BookFair/logout.html')
 
 class SignupView(FormView):
     template_name = "BookFair/signup.html"

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %} Logged out {% endblock %}
+
+{% load bootstrap5 %}
+{% load bootstrap_icons %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-12 d-flex justify-content-center align-items-center gap-3 mt-5">
+        {% bs_icon 'door-closed' color='#6c757d' size='4em' %}
+        <span class="fs-1 text-secondary">You've been signed out!</span>
+    </div>
+    <div class="col-12 d-flex justify-content-center align-items-center gap-3 mt-5">
+        <p class="fs-4 text-secondary">
+            If you'd like to sign back in, <a href="{% url 'login' %}">log in here.</a>
+        <br>
+            If you arrived at this page by accident, you'll have to sign in again.
+        <br>
+            If you don't have an account, <a href="{% url 'signup' %}">you can sign up here.</a>
+        </p>
+    </div>
+</div>
+
+{% endblock %}
