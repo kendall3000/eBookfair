@@ -25,7 +25,6 @@ class Category(models.Model):
 
 class Customer(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, primary_key=True)
-    cus_id = models.AutoField()
     cus_lname = models.CharField(max_length=45)
     cus_fname = models.CharField(max_length=45)
     cus_initial = models.CharField(max_length=45, blank=True, null=True)
@@ -51,7 +50,7 @@ class Discount(models.Model):
 
 class Invoice(models.Model):
     inv_id = models.PositiveIntegerField(primary_key=True)
-    cus = models.ForeignKey(Customer, on_delete=models.DO_NOTHING)  # If a customer is deleted, don't remove their associated transactions, because it could mess with bookkeeping.
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)  # If a customer is deleted, don't remove their associated transactions, because it could mess with bookkeeping.
                                                                     # NOTE: This is perfectly fine *if we do not reuse customer IDs*.
     inv_date = models.DateTimeField()
     inv_address_line1 = models.CharField(max_length=128)
