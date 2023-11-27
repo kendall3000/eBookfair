@@ -168,7 +168,13 @@ class signup(FormView):
         return user
 
     def form_valid(self, form):
-        user = self.create_user_transact(form)
+        self.create_user_transact(form)
+        
+        user = authenticate(
+            username = form.cleaned_data['username'],
+            password = form.cleaned_data['password1']
+        )
+        
         login(self.request, user)
 
         return super().form_valid(form)
