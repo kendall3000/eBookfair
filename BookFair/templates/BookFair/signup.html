@@ -3,87 +3,95 @@
 {% block title %} Sign up for an account {% endblock %}
 
 {% load bootstrap5 %}
+{% load bootstrap_icons %}
 
 {% block content %}
 
+<div class="row">
 {% if user.is_authenticated %}
-
+    <div class="col-12 d-flex justify-content-center align-items-center gap-3 mt-5">
+        {% bs_icon 'person-check-fill' color='#6c757d' size='4em' %}
+        <span class="fs-1 text-secondary">You're already signed in!</span>
+    </div>
+    <div class="col-12 d-flex justify-content-center align-items-center gap-3 mt-5">
+        <p class="fs-4 text-secondary">
+            Find your profile <a href="{% url 'profile' %}">here.</a>
+        </p>
+    </div>
 {% else %}
-    <div class="row">
-        <!-- Display message upon successful/unsuccessful signup here -->
-        {% if messages %}
-            {% for message in messages %}
-                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
-                    <div class="alert alert-danger" role="alert">
-                        {{ message }}
-                    </div>                              
-                {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
-                    <div class="alert alert-success" role="alert">
-                        {{ message }}
-                    </div>
-                {% else %}
-                    <div class="alert alert-primary" role="alert">
-                        {{ message }}
-                    </div>
-                {% endif %}
-            {% endfor %}
-        {% endif %}
-        <div class="col-md-6 offset-md-3 login-form">
-            <h2 class="text-center">Sign up</h2>
-            <form class="row g-3" method="post" action="{% url 'signup' %}">
-                {% csrf_token %}
-                <h3>Sign-in details</h3>
-                <p class="my-0">
-                    You'll use these details to log into your account.
-                </p>
-                <div class="col-12">
-                    <label for="id_username" class="form-label">{{ form.username.label }}</label>
-                    {{ form.username }}
+    <!-- Display message upon successful/unsuccessful signup here -->
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                <div class="alert alert-danger" role="alert">
+                    {{ message }}
+                </div>                              
+            {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                <div class="alert alert-success" role="alert">
+                    {{ message }}
                 </div>
-                <div class="col-md-6">
-                    <label for="id_password1" class="form-label">{{ form.password1.label }}</label>
-                    {{ form.password1 }}
+            {% else %}
+                <div class="alert alert-primary" role="alert">
+                    {{ message }}
                 </div>
-                <div class="col-md-6">
-                    <label for="id_password2" class="form-label">{{ form.password2.label }}</label>
-                    {{ form.password2 }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    <div class="col-md-6 offset-md-3 login-form">
+        <h2 class="text-center">Sign up</h2>
+        <form class="row g-3" method="post" action="{% url 'signup' %}">
+            {% csrf_token %}
+            <h3>Sign-in details</h3>
+            <p class="my-0">
+                You'll use these details to log into your account.
+            </p>
+            <div class="col-12">
+                <label for="id_username" class="form-label">{{ form.username.label }}</label>
+                {{ form.username }}
+            </div>
+            <div class="col-md-6">
+                <label for="id_password1" class="form-label">{{ form.password1.label }}</label>
+                {{ form.password1 }}
+            </div>
+            <div class="col-md-6">
+                <label for="id_password2" class="form-label">{{ form.password2.label }}</label>
+                {{ form.password2 }}
+            </div>
+            <hr>
+            <h3>Personal details</h3>
+            <p class="my-0">
+                You'll use these details in your orders.
+            </p>
+            <div class="col-5">
+                <label for="id_first_name" class="form-label">{{ form.first_name.label }}</label>
+                {{ form.first_name }}
+            </div>
+            <div class="col-2">
+                <label for="id_initial_name" class="form-label">{{ form.initial_name.label }}</label>
+                {{ form.initial_name }}
+            </div>
+            <div class="col-5">
+                <label for="id_last_name" class="form-label">{{ form.last_name.label }}</label>
+                {{ form.last_name }}
+            </div>
+            <div class="col-12">
+                <label for="id_email" class="form-label">{{ form.email.label }}</label>
+                {{ form.email }}
+            </div>
+            <div class="col-4">
+                <label for="id_phone_country" class="form-label">{{ form.phone_country.label }}</label>
+                <div class="input-group">
+                    <span class="input-group-text">+</span>
+                    {{ form.phone_country }}
                 </div>
-                <hr>
-                <h3>Personal details</h3>
-                <p class="my-0">
-                    You'll use these details in your orders.
-                </p>
-                <div class="col-5">
-                    <label for="id_first_name" class="form-label">{{ form.first_name.label }}</label>
-                    {{ form.first_name }}
-                </div>
-                <div class="col-2">
-                    <label for="id_initial_name" class="form-label">{{ form.initial_name.label }}</label>
-                    {{ form.initial_name }}
-                </div>
-                <div class="col-5">
-                    <label for="id_last_name" class="form-label">{{ form.last_name.label }}</label>
-                    {{ form.last_name }}
-                </div>
-                <div class="col-12">
-                    <label for="id_email" class="form-label">{{ form.email.label }}</label>
-                    {{ form.email }}
-                </div>
-                <div class="col-4">
-                    <label for="id_phone_country" class="form-label">{{ form.phone_country.label }}</label>
-                    <div class="input-group">
-                        <span class="input-group-text">+</span>
-                        {{ form.phone_country }}
-                    </div>
-                </div>
-                <div class="col-8">
-                    <label for="id_phone_number" class="form-label">{{ form.phone_number.label }}</label>
-                    {{ form.phone_number }}
-                </div>
-                <button type="submit" class="btn btn-primary btn-block">Sign up</button>
-            </form>
-        </div>
+            </div>
+            <div class="col-8">
+                <label for="id_phone_number" class="form-label">{{ form.phone_number.label }}</label>
+                {{ form.phone_number }}
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Sign up</button>
+        </form>
     </div>
 {% endif %}
-
+</div>
 {% endblock %}

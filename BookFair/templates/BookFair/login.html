@@ -3,13 +3,26 @@
 {% block title %} Login {% endblock %}
 
 {% load bootstrap5 %}
+{% load bootstrap_icons %}
 
 {% block content %}
 
+{% if user.is_authenticated %}
+<div class="container mb-5">
+    <div class="col-12 d-flex justify-content-center align-items-center gap-3 mt-5">
+        {% bs_icon 'person-check-fill' color='#6c757d' size='4em' %}
+        <span class="fs-1 text-secondary">You're already signed in!</span>
+    </div>
+    <div class="col-12 d-flex justify-content-center align-items-center gap-3 mt-5">
+        <p class="fs-4 text-secondary">
+            Find your profile <a href="{% url 'profile' %}">here.</a>
+        </p>
+    </div>
+</div>
+{% else %}
 <div class="container mt-3 mb-0">
     <h1>Log in</h1>
 </div>
-
 <div class="container mb-5">
 <hr>
     <div class="row">
@@ -43,5 +56,6 @@
         </div>
     </div>
 </div>
+{% endif %}
 
 {% endblock %}

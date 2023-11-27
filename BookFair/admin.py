@@ -13,9 +13,9 @@ class DiscountAdmin(admin.ModelAdmin):
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ["cat_id", "cat_name"]
 
-# @admin.register(m.Invoice)
-# class InvoiceAdmin(admin.ModelAdmin):
-#     list_display = ["inv_id", "inv_date"]
+@admin.register(m.Invoice)
+class InvoiceAdmin(admin.ModelAdmin):
+    list_display = ["inv_id", "inv_date"]
 
 @admin.register(m.Customer)
 class CustomerAdmin(admin.ModelAdmin):

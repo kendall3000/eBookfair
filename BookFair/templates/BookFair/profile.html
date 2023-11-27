@@ -3,6 +3,7 @@
 {% block title %} My profile {% endblock %}
 
 {% load bootstrap5 %}
+{% load bootstrap_icons %}
 
 {% block content %}
 
@@ -11,17 +12,6 @@
         {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
             <div class="alert alert-danger" role="alert">
                 {{ message }}
-                <br>
-                <!-- FIXME: create_account_form error debug only -->
-                {% if create_account_form.errors %}
-                    {% for error in create_account_form.errors %}
-                        <p>{{ error }}</p>
-                    {% endfor %}
-                {% endif %}
-                {% if create_account_form.non_field_errors %}
-                {% for error in create_account_form.errors %}
-                    <p>{{ error }}</p>
-                {% endfor %}
             {% endif %}
             </div>                              
         {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
@@ -35,15 +25,24 @@
         {% endif %}
     {% endfor %}
 {% endif %}
+<div class="row">
 {% if user.is_authenticated %}
-    <div class="row">
-        <div class="col-md-6 offset-md-3 profile-info">
-            <h2 class="text-center">Profile Information</h2>
-            <p>Username: {{ user.username }}</p>
-            <p>Email: {{ user.email }}</p>
-        </div>
+    <div class="col-md-6 offset-md-3 profile-info">
+        <h2 class="text-center">Profile Information</h2>
+        <p>Username: {{ user.username }}</p>
+        <p>Email: {{ user.email }}</p>
     </div>
 {% else %}
+    <div class="col-12 d-flex justify-content-center align-items-center gap-3 mt-5">
+        {% bs_icon 'emoji-frown-fill' color='#6c757d' size='4em' %}
+        <span class="fs-1 text-secondary">You're not signed in!</span>
+    </div>
+    <div class="col-12 d-flex justify-content-center align-items-center gap-3 mt-5">
+        <p class="fs-4 text-secondary">
+            If you have an account, <a href="{% url 'login' %}">log in here.</a>
+            If you would like to register, <a href-="{% url 'signup' %}">sign up for an account here.</a>
+        </p>
+    </div>
 {% endif %}
-
+</div>
 {% endblock %}

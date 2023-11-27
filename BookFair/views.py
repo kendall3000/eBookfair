@@ -82,49 +82,6 @@ def product(request, prod_id):
 #     cart_products = cart.products.all()
 #     return render(request, 'BookFair/view_cart.html', {'cart_products': cart_products})
 
-# def user_profile(request):
-#     user = request.user
-#     return render(request, 'BookFair/user_profile.html', {'user': user})
-
-def signup_profile(request):
-    # Creating these, to return if form is made nonexistent
-    # create_account_form = UserCreationForm()
-    # login_account_form = LoginForm()
-    # customer_signup_form = CustomerSignupForm()
-
-    if request.method == 'POST':
-        form = LoginForm(data=request.POST)
-        if form.is_valid():
-            # FIXME: test return message
-            username = request.POST["username"]
-            password = request.POST["password"]
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                messages.success(request, "You've logged in!")
-                form = login_account_form = LoginForm()
-                return HttpResponseRedirect("/signup-profile/")
-            else:
-                messages.error(request, "Wrong credentials. Please check your username and password.")
-
-        # form = UserCreationForm(request.POST)
-        # if form.is_valid():
-        #     user = form.save()
-        #     login(request, user)
-        #     messages.success(request, 'Account created successfully!')
-        #     # Clear out form
-        #     form = create_account_form = UserCreationForm()
-        #     # Return to original profile page
-        #     return HttpResponseRedirect("/signup-profile/")
-        else:
-            messages.error(request, 'Error creating your account. Please check the provided information.')
-    # create_account_form = UserCreationForm()
-    login_account_form = LoginForm()
-    customer_signup_form = CustomerSignupForm()
-
-    return render(request, 'BookFair/signup_profile.html', { 'login_account_form': login_account_form, 'customer_signup_form': customer_signup_form})
-# 'create_account_form': create_account_form,
-
 def profile(request):
     return render(request, 'BookFair/profile.html')
 
@@ -136,9 +93,10 @@ class SignupView(FormView):
         return reverse(profile)
 
     def post(self, request, *args, **kwargs):
+        # Get form object to validate
         form = self.get_form()
         if form.is_valid():
-            # TODO: check that password is the same -- form validation does not help here
+            # Check that password is the same -- form validation does not help here
             if form.cleaned_data['password1'] == form.cleaned_data['password2']:
                 messages.success(request, "Successfully signed up!")
                 return self.form_valid(form)
@@ -148,6 +106,7 @@ class SignupView(FormView):
 
         return self.form_invalid(form)
 
+    # A function that actually creates a user (and the corresponding customer) objects
     @transaction.atomic
     def create_user_transact(self, form):
         user = User.objects.create_user(
@@ -167,6 +126,7 @@ class SignupView(FormView):
 
         return user
 
+    # A function that is called once the form has been checked for validity.
     def form_valid(self, form):
         self.create_user_transact(form)
         
@@ -251,6 +211,6 @@ def search(request):
         else:
             logging.error('Invalid search form!')
     else:
-        logging.error('No search query given!') # TODO: make a real "invalid search/no search given" page
+        logging.error('No search query given!')
 
     return render(request, "BookFair/search.html", {'search_form': search_form_full, 'search_results': query_results_sorted, 'query': query})
