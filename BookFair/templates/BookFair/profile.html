@@ -34,10 +34,14 @@
             <div class="card-body">
                 <h3 class="card-title">{{ user.username }}</h3>
                 <h4 class="card-subtitle">{{ user.email }}</h4>
+                <button type="button" class="btn btn-outline-danger">Sign out</button>
             </div>
+            {% if customer %}
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">Name: {{ customer.cus_name }}</li>
+                <li class="list-group-item">Name: {{ customer.cus_fname }} {{ customer.cus_initial }} {{ customer.cus_lname }}</li>
+                <li class="list-group-item">Phone: +{{ customer.cus_phone_country }} {{ customer.cus_phone }}</li>
             </ul>
+            {% endif %}
         </div>
     </div>
 {% else %}
