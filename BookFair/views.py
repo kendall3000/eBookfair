@@ -149,7 +149,7 @@ class signup(FormView):
         return self.form_invalid(form)
 
     @transaction.atomic
-    def form_valid(self, form):
+    def create_user_transact(self, form):
         user = User.objects.create_user(
             form.cleaned_data['username'],
             form.cleaned_data['email'],
@@ -164,6 +164,16 @@ class signup(FormView):
             cus_phone = form.cleaned_data['phone_number'],
             cus_phone_country = form.cleaned_data['phone_country']
         ).save()
+
+        return user
+
+    def form_valid(self, form):
+        try:
+            user = create_user_transact(self, form)
+            login(self.request, user)
+        except:
+            messages.error(self.request, "Something went wrong.")
+            return super().form_invalid(form)
 
         return super().form_valid(form)
 
