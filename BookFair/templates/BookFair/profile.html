@@ -12,7 +12,6 @@
         {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
             <div class="alert alert-danger" role="alert">
                 {{ message }}
-            {% endif %}
             </div>                              
         {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
             <div class="alert alert-success" role="alert">
