@@ -85,7 +85,7 @@ def product(request, prod_id):
 def profile(request):
     # Get customer that corresponds to signed-in user
     cur_user = request.user
-    if cur_user is not None:
+    if (cur_user is not None) & (cur_user.is_authenticated):
         cur_customer = Customer.objects.get(user=cur_user)
 
     return render(request, 'BookFair/profile.html', {'customer': cur_customer})
