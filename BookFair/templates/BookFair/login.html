@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %} Login {% endblock %}
+
+{% load bootstrap5 %}
+{% load bootstrap_icons %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<div class="container mb-5">
+    <div class="col-12 d-flex justify-content-center align-items-center gap-3 mt-5">
+        {% bs_icon 'person-check-fill' color='#6c757d' size='4em' %}
+        <span class="fs-1 text-secondary">You're already signed in!</span>
+    </div>
+    <div class="col-12 d-flex justify-content-center align-items-center gap-3 mt-5">
+        <p class="fs-4 text-secondary">
+            Find your profile <a href="{% url 'profile' %}">here.</a>
+        </p>
+    </div>
+</div>
+{% else %}
+<div class="container mt-3 mb-0">
+    <h1>Log in</h1>
+</div>
+<div class="container mb-5">
+<hr>
+    <div class="row">
+        <!-- Display message upon successful/unsuccessful signup here -->
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ message }}
+                    </div>                              
+                {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                    <div class="alert alert-success" role="alert">
+                        {{ message }}
+                    </div>
+                {% else %}
+                    <div class="alert alert-primary" role="alert">
+                        {{ message }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        <form class="row g-3 mt-0 px-5" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit" class="btn btn-primary btn-block">Log in</button>
+        </form>
+    </div>
+    <div class="row">
+        <div class="col-12 p-5">
+            <p>No account? <a href="{% url 'signup' %}">Sign up!</a></p>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

@@ -52,12 +52,21 @@
                     <div id="navbar-row-spacer" class="d-block d-lg-none"></div>
                     <div id="navbar-col-spacer" class="d-none d-lg-block"></div>
                     <!-- Profile -->
-                    <a href="{% url 'signup_profile' %}">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'profile' %}">
+                            <button class="btn bg-primary-subtle w-100">
+                                {% bs_icon 'person-fill' color='white' size='1.25em' %}
+                                <span class="d-inline d-lg-none text-light mx-1">My account</span>
+                            </button>
+                        </a>
+                    {% else %}
+                    <a href="{% url 'login' %}">
                         <button class="btn bg-primary-subtle w-100">
                             {% bs_icon 'person-fill' color='white' size='1.25em' %}
-                            <span class="d-inline d-lg-none text-light mx-1">My account</span>
+                            <span class="d-inline d-lg-none text-light mx-1">Log in</span>
                         </button>
                     </a>
+                    {% endif %}
                 </div>     
             </div>
         </nav>

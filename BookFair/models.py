@@ -8,6 +8,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from django.conf import settings
 
 
 class Category(models.Model):
@@ -23,17 +24,15 @@ class Category(models.Model):
 
 
 class Customer(models.Model):
-    cus_id = models.PositiveIntegerField(primary_key=True)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, primary_key=True)
+    # cus_id = models.PositiveIntegerField(primary_key=True)
     cus_lname = models.CharField(max_length=45)
     cus_fname = models.CharField(max_length=45)
     cus_initial = models.CharField(max_length=45, blank=True, null=True)
     cus_email = models.CharField(max_length=128)
     cus_phone = models.CharField(max_length=12)
     cus_phone_country = models.CharField(max_length=3)
-    cus_password = models.CharField(max_length=128)
-    username = models.CharField(max_length=45, unique=True)
     
-
     class Meta:
 #        managed = False
         db_table = 'CUSTOMER'
@@ -95,21 +94,15 @@ class Product(models.Model):
 #        managed = False
         db_table = 'PRODUCT'
 
-class Cart(models.Model):
-    user_profile = models.OneToOneField('UserProfile', on_delete=models.CASCADE)
-    products = models.ManyToManyField(Product)
+# class Cart(models.Model):
+#     user_profile = models.OneToOneField('UserProfile', on_delete=models.CASCADE)
+#     products = models.ManyToManyField(Product)
 
-    def __str__(self):
-        return f"Cart for {self.user_profile.user.username}"
+#     def __str__(self):
+#         return f"Cart for {self.user_profile.user.username}"
 
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+# class UserProfile(models.Model):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
     
-    def __str__(self):
-        return self.user.username
-
-class CustomUserCreationForm(UserCreationForm):
-
-    class Meta:
-        model = User
-        fields = UserCreationForm.Meta.fields
+#     def __str__(self):
+#         return self.user.username

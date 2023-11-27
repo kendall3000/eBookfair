@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %} My profile {% endblock %}
+
+{% load bootstrap5 %}
+{% load bootstrap_icons %}
+
+{% block content %}
+
+{% if messages %}
+    {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+            <div class="alert alert-danger" role="alert">
+                {{ message }}
+            </div>                              
+        {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+            <div class="alert alert-success" role="alert">
+                {{ message }}
+            </div>
+        {% else %}
+            <div class="alert alert-primary" role="alert">
+                {{ message }}
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+<div class="row">
+{% if user.is_authenticated %}
+    <div class="col-md-6 offset-md-3 profile-info">
+        <div class="card">
+            <div class="card-header">
+                Profile
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">{{ user.username }}</h3>
+                <h4 class="card-subtitle">{{ user.email }}</h4>
+                <a href="{% url 'logout' %}">
+                    <button type="button" class="mt-3 btn btn-outline-danger">Sign out</button>
+                </a>
+            </div>
+            {% if customer %}
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Name: {{ customer.cus_fname }} {{ customer.cus_initial }} {{ customer.cus_lname }}</li>
+                <li class="list-group-item">Phone: +{{ customer.cus_phone_country }} {{ customer.cus_phone }}</li>
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+{% else %}
+    <div class="col-12 d-flex justify-content-center align-items-center gap-3 mt-5">
+        {% bs_icon 'emoji-frown-fill' color='#6c757d' size='4em' %}
+        <span class="fs-1 text-secondary">You're not signed in!</span>
+    </div>
+    <div class="col-12 d-flex justify-content-center align-items-center gap-3 mt-5">
+        <p class="fs-4 text-secondary">
+            If you have an account, <a href="{% url 'login' %}">log in here.</a>
+        <br>
+            If you would like to register, <a href="{% url 'signup' %}">sign up for an account here.</a>
+        </p>
+    </div>
+{% endif %}
+</div>
+{% endblock %}
