@@ -27,9 +27,18 @@
 <div class="row">
 {% if user.is_authenticated %}
     <div class="col-md-6 offset-md-3 profile-info">
-        <h2 class="text-center">Profile Information</h2>
-        <p>Username: {{ user.username }}</p>
-        <p>Email: {{ user.email }}</p>
+        <div class="card">
+            <div class="card-header">
+                Profile
+            </div>
+            <div class="card-body">
+                <h1 class="card-title">{{ user.username }}</h1>
+                <h2 class="card-subtitle">{{ user.email }}</h2>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Name: {{ user.customer.cus_name }}</li>
+            </ul>
+        </div>
     </div>
 {% else %}
     <div class="col-12 d-flex justify-content-center align-items-center gap-3 mt-5">
