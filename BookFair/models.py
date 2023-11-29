@@ -94,6 +94,21 @@ class Product(models.Model):
 #        managed = False
         db_table = 'PRODUCT'
 
+class Cart(models.Model):
+    cust = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
+    
+    def __str__(self):
+      return f"{self.quantity} x {self.product}"
+     
+    def get_absolute_url(self):
+      return reverse("BookFair:cart_detail")
+    
+    class Meta:
+#        managed = False
+      db_table = 'CART'
+
 # class Cart(models.Model):
 #     user_profile = models.OneToOneField('UserProfile', on_delete=models.CASCADE)
 #     products = models.ManyToManyField(Product)
