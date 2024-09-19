@@ -1,5 +1,6 @@
-# CS3773-Group-5
-## Getting started
+# eBookfair
+
+## Getting Started
 - Install Python 3.
 - Install these with pip before running the server (`pip install <package name>`).
     - django
